@@ -1,0 +1,6 @@
+---
+- name: Setup Local Machine
+  hosts: localhost
+  connection: local
+  roles:
+    - git
