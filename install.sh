@@ -7,7 +7,7 @@ function check_root() {
     fi
 }
 
-function prep_machine() {
+function prepare_machine() {
     echo "Installing required packages"
     apt update -y
     apt install -y python3 python3-pip python3-venv
@@ -17,14 +17,17 @@ function prep_machine() {
     apt install ansible -y
 }
 
-function run_playbook() {
-    # echo "Installing requirements"
-    # ansible-galaxy install -r requirements.yml
+function install_requirements () {
+    echo "Installing requirements"
+    ansible-galaxy install -r requirements.yml
+}
 
+function run_playbook() {
     echo "Running playbook"
     ansible-playbook ./playbook.yml
 }
 
 check_root
-prep_machine
+prepare_machine
+install_requirements
 run_playbook
