@@ -9,13 +9,13 @@
   ansible.community.git_config:
     name: user.name
     scope: global
-    value: {{ git_user_name }}
+    value: {{git_user_name}}
 
 - name: Set git email
   ansible.community.git_config:
     name: user.email
     scope: global
-    value: {{ git_user_email }}
+    value: {{git_user_email}}
 
 - name: Add an alias to git config (st)
   community.general.git_config:
