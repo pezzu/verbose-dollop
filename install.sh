@@ -9,12 +9,12 @@ function check_root() {
 
 function prepare_machine() {
     echo "Installing required packages"
-    apt update -y
-    apt install -y python3 python3-pip python3-venv
+    sudo apt update -y
+    sudo apt install -y python3 python3-pip python3-venv
 
     echo "Installing Ansible"
-    apt-add-repository --yes --update ppa:ansible/ansible
-    apt install ansible -y
+    sudo apt-add-repository --yes --update ppa:ansible/ansible
+    sudo apt install -y ansible
 }
 
 function install_requirements () {
@@ -24,10 +24,10 @@ function install_requirements () {
 
 function run_playbook() {
     echo "Running playbook"
-    ansible-playbook ./playbook.yml
+    ansible-playbook ./playbook.yml --extra-vars "@./defaults/main.yml"
 }
 
-check_root
+# check_root
 prepare_machine
 install_requirements
 run_playbook
