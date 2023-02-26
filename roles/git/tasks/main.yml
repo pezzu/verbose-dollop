@@ -17,38 +17,9 @@
     scope: global
     value: "{{git_user_email}}"
 
-- name: Add an alias to git config (st)
+- name: Add git aliases
   community.general.git_config:
-    name: alias.st
+    name: "alias.{{item.name}}"
     scope: global
-    value: status
-
-- name: Add an alias to git config (ci)
-  community.general.git_config:
-    name: alias.ci
-    scope: global
-    value: commit
-
-- name: Add an alias to git config (co)
-  community.general.git_config:
-    name: alias.co
-    scope: global
-    value: checkout
-
-- name: Add an alias to git config (ca)
-  community.general.git_config:
-    name: alias.ca
-    scope: global
-    value: commit --all
-
-- name: Add an alias to git config (rb)
-  community.general.git_config:
-    name: alias.rb
-    scope: global
-    value: rebase
-
-- name: Add an alias to git config (glog)
-  community.general.git_config:
-    name: alias.glog
-    scope: global
-    value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+    value: "{{item.value}}"
+  loop: "{{git_aliases}}"
