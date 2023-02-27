@@ -1,0 +1,26 @@
+---
+- name: Install ZSH
+  become: true
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+
+- name: Install Oh My Zsh
+  block:
+    - name: Check if Oh My Zsh is installed
+      stat:
+        path: ~/.oh-my-zsh
+      register: ohmyzsh
+
+    - name: Download install script
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/ohmyzsh-install.sh
+        mode: 0775
+      when: not ohmyzsh.stat.exists
+
+    - name: Run install script
+      ansible.builtin.command:
+        cmd: /tmp/ohmyzsh-install.sh
+        creates: ~/.oh-my-zsh
+      when: not ohmyzsh.stat.exists
