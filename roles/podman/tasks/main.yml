@@ -1,6 +1,9 @@
 ---
-- name: Install Podman
+- name: Install Podman and docker bindings
   become: true
   ansible.builtin.apt:
-    name: podman
+    name:
+    - podman
+    - podman-docker
+    - docker-compose
     state: present
