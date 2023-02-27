@@ -8,7 +8,7 @@
 - name: Install Oh My Zsh
   block:
     - name: Check if Oh My Zsh is installed
-      stat:
+      ansible.builtin.stat:
         path: ~/.oh-my-zsh
       register: ohmyzsh
 
