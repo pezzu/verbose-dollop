@@ -3,7 +3,7 @@
   become: true
   ansible.builtin.apt:
     name:
-    - podman
-    - podman-docker
-    - docker-compose
+      - podman
+      - podman-docker
+      - docker-compose
     state: present
