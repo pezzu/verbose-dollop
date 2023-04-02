@@ -1,0 +1,4 @@
+---
+ohmyzsh_plugins:
+  - git
+  - nvm
