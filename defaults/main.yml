@@ -16,6 +16,7 @@ git_aliases:
   - name: glog
     value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 
+
 # Docker
 docker_repo_url: https://download.docker.com/linux/ubuntu
 docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
@@ -25,7 +26,7 @@ docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
 podman_docker_bindings: false
 
 
-#Oh My Zsh
+# Oh My Zsh
 ohmyzsh_plugins:
   - git
   - nvm

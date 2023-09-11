@@ -14,8 +14,9 @@ sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/
 
 ## List of packages
 
- - [ ] [Ansible](roles/ansible/README.md)
- - [ ] [Code](roles/code/README.md)
- - [x] [git](roles/git/README.md)
- - [x] [Podman](roles/podman/README.md)
- - [x] [ZSH](roles/zsh/README.md)
+ - [x] Ansible
+ - [x] Docker
+ - [ ] Code
+ - [x] git
+ - [x] Podman
+ - [x] ZSH

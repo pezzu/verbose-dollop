@@ -26,6 +26,7 @@
 
     - name: Add the repository to Apt sources.
       apt_repository:
+        # yamllint disable-line rule:line-length
         repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] {{ docker_repo_url }} {{ ansible_distribution_release }} stable"
         state: present
 
