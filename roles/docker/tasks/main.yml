@@ -1,0 +1,42 @@
+---
+- name: Ensure old versions of Docker are not installed.
+  become: true
+  package:
+    name:
+      - docker
+      - docker-engine
+    state: absent
+
+- name: Set up Docker's Apt repository.
+  become: true
+  block:
+    - name: Ensure dependencies are installed.
+      apt:
+        name:
+          - apt-transport-https
+          - gnupg
+          - ca-certificates
+        state: present
+
+    - name: Add Docker's official GPG key.
+      ansible.builtin.apt_key:
+        url: "{{ docker_apt_gpg_key }}"
+        keyring: /etc/apt/keyrings/docker.gpg
+        state: present
+
+    - name: Add the repository to Apt sources.
+      apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] {{ docker_repo_url }} {{ ansible_distribution_release }} stable"
+        state: present
+
+- name: Install Docker packages.
+  become: true
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - docker-ce-rootless-extras
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
