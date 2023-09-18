@@ -19,4 +19,5 @@ sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/
  - [ ] Code
  - [x] git
  - [x] Podman
+ - [x] tmux
  - [x] ZSH

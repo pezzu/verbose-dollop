@@ -6,4 +6,5 @@
     - docker
     - git
     - podman
+    - tmux
     - zsh
