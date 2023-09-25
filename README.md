@@ -1,5 +1,5 @@
 # verbose-dollop
-Ansible script to magically setup new Pop!_OS/Ubuntu machine
+Ansible script to provision my development environment on debian-based system
 
 [![CI status](https://github.com/pezzu/verbose-dollop/actions/workflows/ci.yml/badge.svg)](https://github.com/pezzu/verbose-dollop/actions/workflows/ci.yml)
 
@@ -7,17 +7,22 @@ Ansible script to magically setup new Pop!_OS/Ubuntu machine
 1. Adjust personal settings in defautls/main.yml
 1. Run
 
-```
-sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/install.sh)"
+```sh
+./install.sh
 ```
 
 
 ## List of packages
 
  - [x] Ansible
- - [x] Docker
+ - [ ] AWS cli
  - [ ] Code
+ - [x] Docker
  - [x] git
+ - [ ] Github Desktop
+     - [ ] act
+ - [ ] kubectl
  - [x] Podman
+ - [ ] Terraform cli
  - [x] tmux
  - [x] ZSH
