@@ -5,6 +5,7 @@
   roles:
     - docker
     - git
+    - neovim
     - podman
     - tmux
     - zsh
