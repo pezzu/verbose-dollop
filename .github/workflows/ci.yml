@@ -22,3 +22,16 @@ jobs:
 
       - name: Lint ansible
         run: ansible-lint
+
+  integration:
+    name: Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running installation
+        run: sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/install.sh)"
+
+      - name: Test for idempotence
+        run: |
+          trace_file=$(mktemp)
+          sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/install.sh)" | tee -a ${trace_file}
+          tail ${trace_file} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
