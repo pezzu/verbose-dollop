@@ -6,6 +6,6 @@
     - docker
     - git
     - neovim
-    - podman
-    - tmux
+    # - podman
+    - tools
     - zsh
