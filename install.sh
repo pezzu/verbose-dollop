@@ -27,7 +27,7 @@ function run_playbook() {
     ansible-playbook ./playbook.yml --extra-vars "@./defaults/main.yml"
 }
 
-# check_root
+check_root
 prepare_machine
 install_requirements
 run_playbook
