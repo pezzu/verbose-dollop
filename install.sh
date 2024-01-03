@@ -9,12 +9,12 @@ function check_root() {
 
 function prepare_machine() {
     echo "Installing required packages"
-    sudo apt update -y
-    sudo apt install -y python3 python3-pip python3-venv
+    sudo apt -q -qq update -y
+    sudo apt -q -qq install -y python3 python3-pip python3-venv
 
     echo "Installing Ansible"
     sudo apt-add-repository --yes --update ppa:ansible/ansible
-    sudo apt install -y ansible
+    sudo apt -q -qq install -y ansible
 }
 
 function install_requirements () {
