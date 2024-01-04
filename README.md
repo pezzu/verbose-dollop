@@ -8,7 +8,7 @@ Ansible script to provision my development environment on debian-based system
 1. Run
 
 ```sh
-./install.sh
+sudo ./install.sh
 ```
 
 
@@ -24,5 +24,8 @@ Ansible script to provision my development environment on debian-based system
  - [ ] kubectl
  - [x] Podman
  - [ ] Terraform cli
- - [x] tmux
+ - [x] Tools
+    - fzf
+    - neofetch
+    - tmux
  - [x] ZSH
