@@ -24,6 +24,7 @@ docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
 
 # Tools Packages list
 tools_packages:
+  - entr
   - fzf
   - neofetch
   - tmux

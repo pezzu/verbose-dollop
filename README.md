@@ -25,6 +25,7 @@ sudo ./install.sh
  - [x] Podman
  - [ ] Terraform cli
  - [x] Tools
+    - entr
     - fzf
     - neofetch
     - tmux
