@@ -28,5 +28,6 @@ sudo ./install.sh
     - entr
     - fzf
     - neofetch
+    - stow
     - tmux
  - [x] ZSH

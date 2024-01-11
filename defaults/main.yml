@@ -27,6 +27,7 @@ tools_packages:
   - entr
   - fzf
   - neofetch
+  - stow
   - tmux
 
 
