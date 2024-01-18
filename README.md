@@ -28,6 +28,7 @@ sudo ./install.sh
     - entr
     - fzf
     - neofetch
+    - ranger
     - stow
     - tmux
  - [x] ZSH
