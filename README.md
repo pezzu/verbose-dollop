@@ -27,7 +27,9 @@ sudo ./install.sh
  - [x] Tools
     - entr
     - fzf
+    - jq
     - neofetch
+    - nnn
     - ranger
     - stow
     - tmux
