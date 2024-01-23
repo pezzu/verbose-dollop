@@ -24,7 +24,7 @@ sudo ./install.sh
  - [ ] kubectl
  - [x] Podman
  - [ ] Terraform cli
- - [x] Tools
+ - [x] CLI Tools
     - entr
     - fzf
     - jq
@@ -33,4 +33,5 @@ sudo ./install.sh
     - ranger
     - stow
     - tmux
+    - yq
  - [x] ZSH

@@ -1,0 +1,15 @@
+---
+- name: Install CLI Tools
+  become: true
+  block:
+    - name: apt packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ cli_tools_apt_packages }}"
+
+    - name: snap packages
+      community.general.snap:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ cli_tools_snap_packages }}"

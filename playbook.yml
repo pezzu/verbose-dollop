@@ -7,5 +7,5 @@
     - git
     - neovim
     # - podman
-    - tools
+    - cli-tools
     - zsh

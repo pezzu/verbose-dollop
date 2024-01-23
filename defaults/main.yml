@@ -22,8 +22,8 @@ docker_repo_url: https://download.docker.com/linux/ubuntu
 docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
 
 
-# Tools Packages list
-tools_packages:
+# CLI tools packages list
+cli_tools_apt_packages:
   - entr
   - fzf
   - jq
@@ -32,6 +32,9 @@ tools_packages:
   - ranger
   - stow
   - tmux
+
+cli_tools_snap_packages:
+  - yq
 
 
 # Podman
