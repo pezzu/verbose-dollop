@@ -22,9 +22,11 @@ sudo ./install.sh
  - [ ] Github Desktop
      - [ ] act
  - [ ] kubectl
- - [x] Podman
+ - [ ] nerd-fonts
+ - [x] neovim
+ - [x] podman
  - [ ] Terraform cli
- - [x] CLI Tools
+ - [x] Tools
     - entr
     - fzf
     - jq
@@ -34,4 +36,4 @@ sudo ./install.sh
     - stow
     - tmux
     - yq
- - [x] ZSH
+ - [x] zsh
