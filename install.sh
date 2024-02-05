@@ -1,20 +1,24 @@
 #!/bin/bash
 
-function check_root() {
-    if [ "$EUID" -ne 0 ]
-        then echo "Please run as root"
-        exit
+function ensure_not_root() {
+    if [ "$EUID" -eq 0 ]
+        then echo "This script cannot be run as root"
+        exit 1
     fi
+}
+
+function authorize_sudo() {
+    sudo -v || exit 1
 }
 
 function prepare_machine() {
     echo "Installing required packages"
-    sudo apt -q -qq update -y
-    sudo apt -q -qq install -y python3 python3-pip python3-venv
+    sudo -n apt -q -qq update -y
+    sudo -n apt -q -qq install -y python3 python3-pip python3-venv
 
     echo "Installing Ansible"
-    sudo apt-add-repository --yes --no-update ppa:ansible/ansible
-    sudo apt -q -qq install -y ansible
+    sudo -n apt-add-repository --yes --no-update ppa:ansible/ansible
+    sudo -n apt -q -qq install -y ansible
 }
 
 function install_requirements () {
@@ -27,7 +31,8 @@ function run_playbook() {
     ansible-playbook ./playbook.yml --extra-vars "@./defaults/main.yml"
 }
 
-# check_root
+ensure_not_root
+authorize_sudo
 prepare_machine
 install_requirements
 run_playbook

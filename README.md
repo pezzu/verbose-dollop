@@ -8,7 +8,7 @@ Ansible script to provision my development environment on debian-based system
 1. Run
 
 ```sh
-sudo ./install.sh
+./install.sh
 ```
 
 
@@ -22,7 +22,7 @@ sudo ./install.sh
  - [ ] Github Desktop
      - [ ] act
  - [ ] kubectl
- - [ ] nerd-fonts
+ - [x] nerd-fonts
  - [x] neovim
  - [x] podman
  - [ ] Terraform cli
