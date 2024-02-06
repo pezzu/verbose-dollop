@@ -25,13 +25,19 @@ docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
 # CLI tools packages list
 cli_tools_apt_packages:
   - entr
+  - fd-find
+  - ffmpegthumbnailer
   - fzf
   - jq
+  - libpoppler-dev
   - neofetch
   - nnn
   - ranger
+  - ripgrep
   - stow
   - tmux
+  - unar
+  - zoxide
 
 cli_tools_snap_packages:
   - yq

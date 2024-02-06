@@ -3,10 +3,10 @@
   hosts: localhost
   connection: local
   roles:
+    - cli-tools
     - docker
     - git
     - nerd-fonts
     - neovim
     # - podman
-    - cli-tools
     - zsh
