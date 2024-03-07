@@ -1,6 +1,14 @@
 ---
 name: CI
-"on": [push]
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   lint:
     name: Lint
@@ -27,11 +35,17 @@ jobs:
     name: Integration
     runs-on: ubuntu-latest
     steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v3
+
       - name: Running installation
-        run: sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/install.sh)"
+        run: ./install.sh
 
       - name: Test for idempotence
         run: |
           trace_file=$(mktemp)
-          sh -c "$(curl -fsSl https://raw.githubusercontent.com/pezzu/verbose-dollop/main/install.sh)" | tee -a ${trace_file}
-          tail ${trace_file} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+          ./install.sh | tee -a ${trace_file}
+          tail ${trace_file} \
+            | grep -q 'changed=0.*failed=0' \
+              && (echo 'Idempotence test: pass' && exit 0) \
+                  || (echo 'Idempotence test: fail' && exit 1)
