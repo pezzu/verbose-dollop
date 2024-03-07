@@ -9,4 +9,5 @@
     - nerd-fonts
     - neovim
     # - podman
+    - terraform
     - zsh

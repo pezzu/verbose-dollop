@@ -25,7 +25,7 @@ Ansible script to provision my development environment on debian-based system
  - [x] nerd-fonts
  - [x] neovim
  - [x] podman
- - [ ] Terraform cli
+ - [x] Terraform cli
  - [x] Tools
     - entr
     - fzf
