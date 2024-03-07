@@ -29,8 +29,7 @@
       ansible.builtin.lineinfile:
         path: ~/.zshrc
         search_string: plugins=
-        value: plugins=("{{ ohmyzsh_plugins | join(' ') }}")
-      when: not ohmyzsh.stat.exists
+        value: plugins=({{ ohmyzsh_plugins | join(' ') }})
 
 - name: Set ZSH as default shell
   become: true

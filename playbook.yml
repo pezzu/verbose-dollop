@@ -8,6 +8,6 @@
     - git
     - nerd-fonts
     - neovim
-    # - podman
     - terraform
     - zsh
+    # - podman

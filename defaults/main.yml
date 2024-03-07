@@ -48,3 +48,4 @@ podman_docker_bindings: false
 ohmyzsh_plugins:
   - git
   - nvm
+  - vi-mode
