@@ -16,11 +16,9 @@ git_aliases:
   - name: glog
     value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 
-
 # Docker
 docker_repo_url: https://download.docker.com/linux/ubuntu
 docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
-
 
 # CLI tools packages list
 cli_tools_apt_packages:
@@ -28,6 +26,7 @@ cli_tools_apt_packages:
   - fd-find
   - ffmpegthumbnailer
   - fzf
+  - graphviz
   - jq
   - libpoppler-dev
   - neofetch
@@ -42,10 +41,8 @@ cli_tools_apt_packages:
 cli_tools_snap_packages:
   - yq
 
-
 # Podman
 podman_docker_bindings: false
-
 
 # Oh My Zsh
 ohmyzsh_plugins:
