@@ -1,6 +1,6 @@
 ---
 - name: Install Terraform CLI
-  become: yes
+  become: true
   block:
     - name: Download HashiCorp GPG key
       apt_key:
@@ -18,5 +18,5 @@
     - name: Update apt and install terraform
       apt:
         name: terraform
-        update_cache: yes
+        update_cache: true
         state: present
