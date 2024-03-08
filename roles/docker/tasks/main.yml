@@ -1,7 +1,7 @@
 ---
 - name: Ensure old versions of Docker are not installed.
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - docker
       - docker-engine

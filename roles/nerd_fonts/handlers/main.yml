@@ -1,4 +1,6 @@
 ---
 - name: Update font cache
-  # yamllint disable-line rule:no-changed-when
-  ansible.builtin.command: "fc-cache -fv"
+  ansible.builtin.command: >
+    fc-cache -fv
+  tags:
+    - skip_ansible_lint

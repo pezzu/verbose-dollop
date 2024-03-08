@@ -21,7 +21,7 @@ docker:
   repo_url: https://download.docker.com/linux/ubuntu
   apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
 
-cli_toos:
+cli_tools:
   apt_packages:
     - entr
     - fd-find

@@ -30,4 +30,4 @@
     mode: "u=rw,g=r,o=r"
   loop: "{{ fonts_to_install.files }}"
   notify:
-    - update font cache
+    - Update font cache
