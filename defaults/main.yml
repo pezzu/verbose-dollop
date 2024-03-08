@@ -1,54 +1,54 @@
 ---
-# git
-git_user_name: Peter Sukhenko
-git_user_email: 7243796+pezzu@users.noreply.github.com
-git_aliases:
-  - name: ci
-    value: commit
-  - name: ca
-    value: commit --all
-  - name: co
-    value: checkout
-  - name: rb
-    value: rebase
-  - name: st
-    value: status
-  - name: glog
-    value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+git:
+  user:
+    name: Peter Sukhenko
+    email: 7243796+pezzu@users.noreply.github.com
+  aliases:
+    - name: ci
+      value: commit
+    - name: ca
+      value: commit --all
+    - name: co
+      value: checkout
+    - name: rb
+      value: rebase
+    - name: st
+      value: status
+    - name: glog
+      value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
 
-# Docker
-docker_repo_url: https://download.docker.com/linux/ubuntu
-docker_apt_gpg_key: "{{ docker_repo_url }}/gpg"
+docker:
+  repo_url: https://download.docker.com/linux/ubuntu
+  apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
 
-# CLI tools packages list
-cli_tools_apt_packages:
-  - entr
-  - fd-find
-  - ffmpegthumbnailer
-  - fzf
-  - graphviz
-  - jq
-  - libpoppler-dev
-  - neofetch
-  - nnn
-  - ranger
-  - ripgrep
-  - stow
-  - tmux
-  - unar
-  - zoxide
+cli_toos:
+  apt_packages:
+    - entr
+    - fd-find
+    - ffmpegthumbnailer
+    - fzf
+    - graphviz
+    - jq
+    - libpoppler-dev
+    - neofetch
+    - nnn
+    - ranger
+    - ripgrep
+    - stow
+    - tmux
+    - unar
+    - zoxide
+  snap_packages:
+    - yq
 
-cli_tools_snap_packages:
-  - yq
+podman:
+  docker_bindings: false
 
-# Podman
-podman_docker_bindings: false
-
-# Oh My Zsh
-ohmyzsh_plugins:
-  - git
-  - nvm
-  - vi-mode
+ohmyzsh:
+  plugins:
+    - git
+    - nvm
+    - vi-mode
 
 nerd_fonts:
   # version: "HEAD"

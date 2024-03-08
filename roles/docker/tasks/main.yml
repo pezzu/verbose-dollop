@@ -11,7 +11,7 @@
   become: true
   block:
     - name: Ensure dependencies are installed.
-      apt:
+      ansible.builtin.apt:
         name:
           - apt-transport-https
           - gnupg
@@ -20,14 +20,14 @@
 
     - name: Add Docker's official GPG key.
       ansible.builtin.apt_key:
-        url: "{{ docker_apt_gpg_key }}"
+        url: "{{ docker.apt_gpg_key }}"
         keyring: /etc/apt/keyrings/docker.gpg
         state: present
 
     - name: Add the repository to Apt sources.
-      apt_repository:
+      ansible.builtin.apt_repository:
         # yamllint disable-line rule:line-length
-        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] {{ docker_repo_url }} {{ ansible_distribution_release }} stable"
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] {{ docker.repo_url }} {{ ansible_distribution_release }} stable"
         state: present
 
 - name: Install Docker packages.

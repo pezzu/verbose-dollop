@@ -4,12 +4,13 @@
 
   block:
     - name: Download VS Code .deb package
-      get_url:
+      ansible.builtin.get_url:
         url: "https://go.microsoft.com/fwlink/?LinkID=760868"
         dest: "/tmp/code.deb"
+        mode: "u=rw,g=r,o=r"
 
     - name: Install VS Code using apt
-      apt:
+      ansible.builtin.apt:
         deb: "/tmp/code.deb"
         state: present
       register: result
