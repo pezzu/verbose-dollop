@@ -25,6 +25,8 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install yamllint ansible-base ansible-lint six
 
+      - run: pip3 list
+
       - name: Lint yaml.
         run: yamllint .
 
@@ -45,7 +47,6 @@ jobs:
         run: |
           trace_file=$(mktemp)
           ./install.sh | tee -a ${trace_file}
-          tail ${trace_file} \
-            | grep -q 'changed=0.*failed=0' \
-              && (echo 'Idempotence test: pass' && exit 0) \
-                  || (echo 'Idempotence test: fail' && exit 1)
+          tail ${trace_file} |
+            grep -q 'changed=0.*failed=0' && \
+            (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)

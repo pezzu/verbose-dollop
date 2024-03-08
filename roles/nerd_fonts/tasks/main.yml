@@ -18,7 +18,7 @@
 
 - name: Create fonts directory
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/.local/share/fonts"
+    path: "{{ ansible_env.HOME }}/.local/share/fonts"
     state: directory
     mode: "u=rwx"
 
