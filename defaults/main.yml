@@ -49,3 +49,7 @@ ohmyzsh_plugins:
   - git
   - nvm
   - vi-mode
+
+nerd_fonts:
+  # version: "HEAD"
+  version: "v3.1.1"
