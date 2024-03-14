@@ -2,7 +2,7 @@
 
 function ensure_not_root() {
     if [ "$EUID" -eq 0 ]
-        then echo "This script cannot be run as root"
+    then echo "This script cannot be run as root"
         exit 1
     fi
 }
@@ -14,8 +14,8 @@ function authorize_sudo() {
 function prepare_machine() {
     echo "Installing required packages"
     sudo -n apt -q -qq update -y
-    sudo -n apt -q -qq install -y python3 python3-pip python3-venv
-
+    sudo -n apt -q -qq install -y python3 python3-pip
+    
     echo "Installing Ansible"
     sudo -n apt-add-repository --yes --no-update ppa:ansible/ansible
     sudo -n apt -q -qq install -y ansible
