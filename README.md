@@ -39,5 +39,6 @@ Ansible script to provision my development environment on debian-based system
   - ranger
   - stow
   - tmux
+  - wrk
   - yq
 - [x] zsh

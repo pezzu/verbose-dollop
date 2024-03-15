@@ -39,6 +39,7 @@ cli_tools:
     - stow
     - tmux
     - unar
+    - wrk
     - zoxide
   snap_packages:
     - yq
