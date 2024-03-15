@@ -13,4 +13,4 @@
       - podman-docker
       - docker-compose
     state: present
-  when: podman_docker_bindings | bool
+  when: podman.docker_bindings | bool
