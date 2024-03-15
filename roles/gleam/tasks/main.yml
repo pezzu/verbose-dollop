@@ -1,0 +1,40 @@
+---
+- name: Install Gleam
+  block:
+    - name: Check current version
+      ansible.builtin.command: "gleam --version"
+      register: version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest release version
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/gleam-lang/gleam/releases/latest
+      register: release
+
+    - name: Register versions
+      ansible.builtin.set_fact:
+        current: "v{{ (version.rc|int == 0) | ternary(version.stdout | split | last, '') }}"
+        latest: "{{ release.json.tag_name }}"
+
+    - name: Install new version
+      when: latest != current
+      block:
+        - name: Download package
+          ansible.builtin.get_url:
+            url: >
+              {{
+                release.json.assets
+                | map(attribute='browser_download_url')
+                | select('match', '^.*-' + ansible_architecture + '-.*-linux-.*\.tar\.gz$')
+                | first
+              }}
+            dest: /tmp
+          register: downloaded
+
+        - name: Unpack package
+          ansible.builtin.unarchive:
+            src: "{{ downloaded.dest }}"
+            dest: "{{ install_dir }}"
+            remote_src: true

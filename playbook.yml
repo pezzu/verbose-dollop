@@ -6,6 +6,7 @@
     - cli_tools
     - docker
     - git
+    - gleam
     - nerd_fonts
     - neovim
     - terraform

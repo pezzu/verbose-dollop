@@ -18,6 +18,8 @@ Ansible script to provision my development environment on debian-based system
 - [x] Ansible
 - [ ] AWS cli
 - [ ] Code
+- [ ] Compilers
+  - [x] gleam
 - [x] Docker
 - [x] git
 - [ ] Github Desktop

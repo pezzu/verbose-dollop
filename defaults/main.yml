@@ -1,4 +1,6 @@
 ---
+local_bin: ~/.local/bin/
+
 git:
   user:
     name: Peter Sukhenko
