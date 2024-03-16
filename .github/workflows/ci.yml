@@ -17,19 +17,8 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install test dependencies
-        run: pip3 install yamllint ansible-core ansible-lint
-
-      - name: Lint yaml
-        run: yamllint .
-
-      - name: Lint ansible
-        run: ansible-lint
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v24
 
   integration:
     name: Integration
