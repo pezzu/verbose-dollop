@@ -1,2 +1,2 @@
 ---
-install_dir: "{{ local_bin | default('~/.local/bin/') }}"
+gleam_install_dir: "{{ local_bin | default('~/.local/bin/') }}"

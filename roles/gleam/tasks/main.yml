@@ -15,7 +15,7 @@
 
     - name: Register versions
       ansible.builtin.set_fact:
-        current: "v{{ (version.rc|int == 0) | ternary(version.stdout | split | last, '') }}"
+        current: "v{{ (version.rc | int == 0) | ternary(version.stdout | split | last, '') }}"
         latest: "{{ release.json.tag_name }}"
 
     - name: Install new version
@@ -31,10 +31,17 @@
                 | first
               }}
             dest: /tmp
+            mode: "u=rw,g=r,o=r"
           register: downloaded
+
+        - name: Create installation directory
+          ansible.builtin.file:
+            path: "{{ gleam_install_dir }}"
+            state: directory
+            mode: "u=rwxrwxr-x"
 
         - name: Unpack package
           ansible.builtin.unarchive:
             src: "{{ downloaded.dest }}"
-            dest: "{{ install_dir }}"
+            dest: "{{ gleam_install_dir }}"
             remote_src: true
