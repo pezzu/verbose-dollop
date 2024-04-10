@@ -17,7 +17,11 @@
 
         - name: Register versions
           ansible.builtin.set_fact:
-            current: "{{ (version.rc | int == 0) | ternary(version.stdout | split('\n') | first | split | last, '') }}"
+            current: >
+              {{
+                (version.rc | int == 0)
+                | ternary(version.stdout | split('\n') | first | split | last, '')
+              }}
             latest: "{{ release.json.tag_name }}"
 
         - name: Install new version
@@ -25,6 +29,7 @@
           block:
             - name: Download package
               ansible.builtin.get_url:
+                # yamllint disable rule:line-length
                 url: >
                   {{
                     release.json.assets
@@ -32,6 +37,7 @@
                     | select('match', '^.*-linux-' + (ansible_architecture == 'x86_64') | ternary('amd64', 'arm64') + '$')
                     | first
                   }}
+                # yamllint enable rule:line-length
                 dest: /tmp
                 mode: "u=rw,g=r,o=r"
               register: downloaded
