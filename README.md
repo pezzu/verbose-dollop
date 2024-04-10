@@ -20,11 +20,18 @@ Ansible script to provision my development environment on debian-based system
 - [ ] Code
 - [ ] Compilers
   - [x] gleam
+  - [ ] go
+  - [ ] rust
 - [x] Docker
 - [x] git
-- [ ] Github Desktop
+- [ ] Github
+  - [ ] gh cli
   - [ ] act
-- [ ] kubectl
+  - [ ] copilot cli
+- [ ] Kubernetes
+  - [x] minikube
+  - [ ] kubectl
+  - [ ] helm
 - [x] nerd-fonts
 - [x] neovim
 - [x] podman

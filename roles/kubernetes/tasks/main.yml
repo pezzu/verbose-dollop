@@ -1,0 +1,47 @@
+---
+- name: Install kubernetes tools
+  block:
+    - name: Install minikube
+      block:
+        - name: Check current version
+          ansible.builtin.command: "minikube version"
+          register: version
+          changed_when: false
+          failed_when: false
+
+        - name: Get latest release version
+          ansible.builtin.uri:
+            method: GET
+            url: https://api.github.com/repos/kubernetes/minikube/releases/latest
+          register: release
+
+        - name: Register versions
+          ansible.builtin.set_fact:
+            current: "{{ (version.rc | int == 0) | ternary(version.stdout | split('\n') | first | split | last, '') }}"
+            latest: "{{ release.json.tag_name }}"
+
+        - name: Install new version
+          when: latest != current
+          block:
+            - name: Download package
+              ansible.builtin.get_url:
+                url: >
+                  {{
+                    release.json.assets
+                    | map(attribute='browser_download_url')
+                    | select('match', '^.*-linux-' + (ansible_architecture == 'x86_64') | ternary('amd64', 'arm64') + '$')
+                    | first
+                  }}
+                dest: /tmp
+                mode: "u=rw,g=r,o=r"
+              register: downloaded
+
+            - name: Unpack package
+              become: true
+              ansible.builtin.copy:
+                src: "{{ downloaded.dest }}"
+                dest: /usr/local/bin/minikube
+                owner: root
+                group: root
+                remote_src: true
+                mode: "u=rwx,g=rx,o=rx"
