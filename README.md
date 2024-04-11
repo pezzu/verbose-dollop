@@ -21,6 +21,8 @@ Ansible script to provision my development environment on debian-based system
 - [ ] Compilers
   - [x] gleam
   - [ ] go
+  - [ ] nvm
+  - [ ] python
   - [ ] rust
 - [x] Docker
 - [x] git
@@ -30,10 +32,10 @@ Ansible script to provision my development environment on debian-based system
   - [ ] copilot cli
 - [ ] Kubernetes
   - [x] minikube
-  - [ ] kubectl
+  - [x] kubectl
   - [ ] helm
 - [x] nerd-fonts
-- [x] neovim
+- [ ] neovim
 - [x] podman
 - [x] Terraform cli
 - [x] Tools
