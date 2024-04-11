@@ -1,0 +1,42 @@
+---
+- name: Check current kubectl version
+  ansible.builtin.command: "kubectl version --client"
+  register: version
+  changed_when: false
+  failed_when: false
+
+- name: Get latest release kubectl version
+  ansible.builtin.uri:
+    method: GET
+    return_content: true
+    url: https://cdn.dl.k8s.io/release/stable.txt
+  register: release
+
+- name: Register versions
+  ansible.builtin.set_fact:
+    current: "{{
+      (version.rc | int == 0)
+      | ternary(version.stdout | split('\n') | first | split | last, '')
+      }}"
+    stable: "{{ release.content }}"
+
+- name: Install new version
+  when: stable != current
+  block:
+    - name: Download kubectl package
+      ansible.builtin.get_url:
+        # yamllint disable-line rule:line-length
+        url: "https://cdn.dl.k8s.io/release/{{ stable }}/bin/linux/{{ (ansible_architecture == 'x86_64') | ternary('amd64', 'arm64') }}/kubectl"
+        dest: /tmp
+        mode: "u=rw,g=r,o=r"
+      register: downloaded
+
+    - name: Install kubectl binary
+      become: true
+      ansible.builtin.copy:
+        src: "{{ downloaded.dest }}"
+        dest: /usr/local/bin/kubectl
+        owner: root
+        group: root
+        remote_src: true
+        mode: "u=rwx,g=rx,o=rx"
