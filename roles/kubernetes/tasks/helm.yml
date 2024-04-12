@@ -1,0 +1,59 @@
+---
+- name: Check current helm version
+  ansible.builtin.command: "helm version --template {{'{{'}}.Version{{'}}'}}"
+  register: version
+  changed_when: false
+  failed_when: false
+
+- name: Get latest release helm version
+  ansible.builtin.uri:
+    method: GET
+    url: https://api.github.com/repos/helm/helm/releases/latest
+  register: release
+
+- name: Register versions
+  ansible.builtin.set_fact:
+    current: "{{
+      (version.rc | int == 0)
+      | ternary(version.stdout | split('\n') | last, '')
+      }}"
+    latest: "{{ release.json.tag_name }}"
+
+- name: Install new version
+  when: latest != current
+  block:
+    - name: Download helm package
+      ansible.builtin.get_url:
+        # yamllint disable rule:line-length
+        url: "{{
+          'https://get.helm.sh/' +
+          release.json.assets
+          | map(attribute='browser_download_url')
+          | select('match', '^.*-linux-' + (ansible_architecture == 'x86_64') | ternary('amd64', 'arm64') + '.tar.gz.asc$')
+          | first
+          | regex_search('\/([^\/]+).asc$', '\\1')
+          | first
+          }}"
+        # yamllint enable rule:line-length
+        dest: /tmp
+        mode: "u=rw,g=r,o=r"
+      register: downloaded
+
+    - name: Unpack helm package
+      ansible.builtin.unarchive:
+        src: "{{ downloaded.dest }}"
+        dest: /tmp
+        list_files: true
+        remote_src: true
+      register: extracted
+
+    - name: Install helm binary
+      become: true
+      ansible.builtin.copy:
+        # yamllint disable-line rule:line-length
+        src: "{{ (extracted.dest, extracted.files | select('match', '^.*/helm$') | first) | path_join }}"
+        dest: /usr/local/bin/helm
+        owner: root
+        group: root
+        remote_src: true
+        mode: "u=rwx,g=rx,o=rx"
