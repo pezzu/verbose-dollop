@@ -1,9 +1,9 @@
 ---
-# - name: Install minikube
-# ansible.builtin.import_tasks: tasks/minikube.yml
-#
-# - name: Install kubectl
-# ansible.builtin.import_tasks: tasks/kubectl.yml
+- name: Install minikube
+  ansible.builtin.import_tasks: tasks/minikube.yml
+
+- name: Install kubectl
+  ansible.builtin.import_tasks: tasks/kubectl.yml
 
 - name: Install helm
   ansible.builtin.import_tasks: tasks/helm.yml
