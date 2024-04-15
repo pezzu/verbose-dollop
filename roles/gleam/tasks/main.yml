@@ -38,7 +38,7 @@
           ansible.builtin.file:
             path: "{{ gleam_install_dir }}"
             state: directory
-            mode: "u=rwxrwxr-x"
+            mode: "u=rwx,g=rx,o=rx"
 
         - name: Unpack package
           ansible.builtin.unarchive:
