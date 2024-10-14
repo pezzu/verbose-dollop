@@ -1,0 +1,10 @@
+---
+- name: Setup System Settings
+  become: true
+  block:
+    - name: Switch Capslock and Escape
+      ansible.builtin.lineinfile:
+        path: "/etc/default/keyboard"
+        search_string: "XKBOPTIONS"
+        line: "XKBOPTIONS=caps:swapescape"
+        state: "present"
