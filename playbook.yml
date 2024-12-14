@@ -8,9 +8,9 @@
     - docker
     - git
     - gleam
+    - hashicorp
     - kubernetes
     - nerd_fonts
     - neovim
-    - terraform
     - zsh
     # - podman

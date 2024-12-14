@@ -17,8 +17,13 @@
         state: present
         filename: hashicorp
 
-    - name: Update apt and install terraform
+    - name: Install Hashicorp stack
       ansible.builtin.apt:
-        name: terraform
+        name: "{{ item }}"
         update_cache: true
         state: present
+      loop:
+        - terraform
+        - nomad
+        - packer
+        - vagrant
