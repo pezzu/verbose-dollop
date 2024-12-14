@@ -29,6 +29,7 @@ cli_tools:
     - graphviz
     - jq
     - libpoppler-dev
+    - lsd
     - neofetch
     - nnn
     - ranger
