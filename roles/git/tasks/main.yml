@@ -5,21 +5,8 @@
     name: git
     state: present
 
-- name: Set git user
-  community.general.git_config:
-    name: user.name
-    scope: global
-    value: "{{ git.user.name }}"
-
-- name: Set git email
-  community.general.git_config:
-    name: user.email
-    scope: global
-    value: "{{ git.user.email }}"
-
-- name: Add git aliases
-  community.general.git_config:
-    name: "alias.{{ item.name }}"
-    scope: global
-    value: "{{ item.value }}"
-  loop: "{{ git.aliases }}"
+- name: config
+  include_tasks: config_section.yml
+  loop: "{{ git.config | dict2items }}"
+  loop_control:
+    loop_var: section

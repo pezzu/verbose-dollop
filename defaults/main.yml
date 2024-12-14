@@ -2,22 +2,19 @@
 local_bin: ~/.local/bin/
 
 git:
-  user:
-    name: Peter Sukhenko
-    email: 7243796+pezzu@users.noreply.github.com
-  aliases:
-    - name: ci
-      value: commit
-    - name: ca
-      value: commit --all
-    - name: co
-      value: checkout
-    - name: rb
-      value: rebase
-    - name: st
-      value: status
-    - name: glog
-      value: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+  config:
+    user:
+      name: Peter Sukhenko
+      email: 7243796+pezzu@users.noreply.github.com
+    alias:
+      ci: commit
+      ca: commit --all
+      co: checkout
+      rb: rebase
+      st: status
+      glog: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+    core:
+      pager: less -F -X
 
 docker:
   repo_url: https://download.docker.com/linux/ubuntu

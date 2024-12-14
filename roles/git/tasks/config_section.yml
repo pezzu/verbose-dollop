@@ -1,0 +1,7 @@
+---
+- name: config section
+  community.general.git_config:
+    name: "{{ section.key }}.{{ item.key }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop: "{{ section.value | dict2items }}"
