@@ -10,3 +10,6 @@
 
 - name: Install Hashicorp stack
   ansible.builtin.import_tasks: tasks/hashicorp.yml
+
+- name: Install cloud CLIs
+  ansible.builtin.import_tasks: tasks/cloud.yml

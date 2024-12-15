@@ -40,6 +40,8 @@ Ansible script to provision my development environment on debian-based system
     - [x] minikube
     - [x] kubectl
     - [x] helm
+  - [x] cloud
+    - [x] aws cli
 - [x] nerd-fonts
 - [ ] neovim
 - [x] podman

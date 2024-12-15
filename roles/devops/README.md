@@ -9,6 +9,7 @@ Install devops related tools
 - nomad
 - packer
 - vagrant
+- aws cli
 
 ## Requirements
 
