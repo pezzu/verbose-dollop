@@ -7,3 +7,6 @@
 
 - name: Install helm
   ansible.builtin.import_tasks: tasks/helm.yml
+
+- name: Install Hashicorp stack
+  ansible.builtin.import_tasks: tasks/hashicorp.yml

@@ -8,8 +8,7 @@
     - docker
     - git
     - gleam
-    - hashicorp
-    - kubernetes
+    - devops
     - nerd_fonts
     - neovim
     - zsh

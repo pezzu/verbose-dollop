@@ -1,10 +1,14 @@
 # Kubernetes tool belt
 
-Install local tools to work with kubernetes:
+Install devops related tools
 
 - minikube
 - kubectl
 - helm
+- terraform
+- nomad
+- packer
+- vagrant
 
 ## Requirements
 
@@ -24,7 +28,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - kubernetes
+         - devops
 
 ## License
 

@@ -1,5 +1,5 @@
 ---
-- name: Install Terraform CLI
+- name: Install Hashicorp stack
   become: true
   block:
     - name: Download HashiCorp GPG key
@@ -11,13 +11,12 @@
 
     - name: Add HashiCorp repository
       ansible.builtin.apt_repository:
-        repo:
-          "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+        repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
           https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
         state: present
         filename: hashicorp
 
-    - name: Install Hashicorp stack
+    - name: Install tools
       ansible.builtin.apt:
         name: "{{ item }}"
         update_cache: true

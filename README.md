@@ -30,18 +30,19 @@ Ansible script to provision my development environment on debian-based system
   - [ ] gh cli
   - [ ] act
   - [ ] copilot cli
-- [ ] kubernetes
-  - [x] minikube
-  - [x] kubectl
-  - [ ] helm
+- [x] devops
+  - [x] Hashicorp stack
+    - [x] terraform
+    - [x] nomad
+    - [x] packman
+    - [x] vagrant
+  - [x] kubernetes
+    - [x] minikube
+    - [x] kubectl
+    - [x] helm
 - [x] nerd-fonts
 - [ ] neovim
 - [x] podman
-- [x] Hashicorp stack
-  - terraform
-  - nomad
-  - packman
-  - vagrant
 - [x] Tools
   - entr
   - fzf
