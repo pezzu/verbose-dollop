@@ -22,7 +22,8 @@
         update_cache: true
         state: present
       loop:
-        - terraform
+        - consul
         - nomad
         - packer
+        - terraform
         - vagrant
