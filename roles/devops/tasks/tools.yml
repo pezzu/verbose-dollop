@@ -1,0 +1,6 @@
+---
+- name: Install hey
+  become: true
+  community.general.apt:
+      name: hey
+      state: present

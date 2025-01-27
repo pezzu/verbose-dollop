@@ -13,3 +13,6 @@
 
 - name: Install cloud CLIs
   ansible.builtin.import_tasks: tasks/cloud.yml
+
+- name: Install DevOps tools
+  ansible.builtin.import_tasks: tasks/tools.yml
