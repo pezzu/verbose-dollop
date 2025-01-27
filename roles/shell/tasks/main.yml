@@ -1,0 +1,9 @@
+---
+- name: Installing system packages
+  ansible.builtin.import_tasks: tasks/packages.yml
+
+- name: Install Nerd Fonts
+  ansible.builtin.import_tasks: tasks/nerd_fonts.yml
+
+- name: Install ZSH
+  ansible.builtin.import_tasks: tasks/zsh.yml

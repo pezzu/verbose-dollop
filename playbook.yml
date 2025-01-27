@@ -4,12 +4,10 @@
   connection: local
   roles:
     - settings
-    - cli_tools
+    - shell
     - docker
     - git
     - gleam
     - devops
-    - nerd_fonts
     - neovim
-    - zsh
     # - podman

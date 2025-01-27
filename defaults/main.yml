@@ -20,8 +20,8 @@ docker:
   repo_url: https://download.docker.com/linux/ubuntu
   apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
 
-cli_tools:
-  apt_packages:
+shell:
+  packages:
     - entr
     - fd-find
     - ffmpegthumbnailer
@@ -31,7 +31,6 @@ cli_tools:
     - libpoppler-dev
     - lsd
     - neofetch
-    - nnn
     - ranger
     - ripgrep
     - stow
@@ -39,17 +38,12 @@ cli_tools:
     - unar
     - wrk
     - zoxide
-  snap_packages:
-    - yq
+  ohmyzsh_plugins:
+    - git
+    - vi-mode
 
 podman:
   docker_bindings: false
-
-ohmyzsh:
-  plugins:
-    - git
-    - nvm
-    - vi-mode
 
 nerd_fonts:
   # version: "HEAD"
