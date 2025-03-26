@@ -1,5 +1,5 @@
 ---
-- name: Download from git
+- name: Download Nerd fonts
   ansible.builtin.git:
     repo: "https://github.com/ryanoasis/nerd-fonts.git"
     dest: "/tmp/nerd-fonts"
@@ -7,27 +7,9 @@
     force: true
     version: "{{ nerd_fonts.version }}"
 
-- name: Select fonts to install
-  ansible.builtin.find:
-    recurse: true
-    use_regex: true
-    paths: "/tmp/nerd-fonts"
-    patterns:
-      - '^.*?((?!Windows).)*?\.ttf$'
-  register: fonts_to_install
-
-- name: Create fonts directory
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.local/share/fonts"
-    state: directory
-    mode: "u=rwx"
-
-- name: Install fonts
-  ansible.builtin.copy:
-    dest: "{{ ansible_env.HOME }}/.local/share/fonts/{{ item.path | basename }}"
-    src: "{{ item.path }}"
-    remote_src: true
-    mode: "u=rw,g=r,o=r"
-  loop: "{{ fonts_to_install.files }}"
+- name: Install Nerd fonts
+  ansible.builtin.shell:
+    cmd: "/tmp/nerd-fonts/install.sh {{ item }}"
+  loop: "{{ nerd_fonts.fonts }}"
   notify:
     - Update font cache
