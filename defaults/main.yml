@@ -23,16 +23,17 @@ docker:
 
 shell:
   packages:
+    - cloc
     - entr
     - fd-find
+    - ffmpeg
     - ffmpegthumbnailer
     - fzf
     - graphviz
+    - imagemagick
     - jq
     - libpoppler-dev
     - lsd
-    - neofetch
-    - ranger
     - ripgrep
     - stow
     - tmux
