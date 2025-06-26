@@ -1,0 +1,28 @@
+---
+- name: Get latest dive version
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/wagoodman/dive/releases/latest
+    method: GET
+    return_content: true
+  register: dive_latest_release
+
+- name: Set dive version fact
+  ansible.builtin.set_fact:
+    dive_version: "{{ dive_latest_release.json.tag_name | regex_replace('^v', '') }}"
+
+- name: Download dive deb package
+  ansible.builtin.get_url:
+    url: "{{ dive.download_url }}/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb"
+    dest: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    mode: "0644"
+
+- name: Install dive from deb package
+  become: true
+  ansible.builtin.apt:
+    deb: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    state: present
+
+- name: Clean up dive deb package
+  ansible.builtin.file:
+    path: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    state: absent

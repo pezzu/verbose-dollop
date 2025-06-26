@@ -21,6 +21,9 @@ docker:
   repo_url: https://download.docker.com/linux/ubuntu
   apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
 
+dive:
+  download_url: https://github.com/wagoodman/dive/releases/download
+
 shell:
   packages:
     - cloc
