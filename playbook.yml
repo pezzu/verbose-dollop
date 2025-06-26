@@ -7,7 +7,7 @@
     - shell
     - docker
     - git
-    - gleam
+    - developer
     - devops
     - neovim
     # - podman

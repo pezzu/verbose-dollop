@@ -1,0 +1,6 @@
+---
+- name: Install VS Code
+  ansible.builtin.import_tasks: tasks/vscode.yml
+
+- name: Install Gleam
+  ansible.builtin.import_tasks: tasks/gleam.yml

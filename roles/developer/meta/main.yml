@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Peter Sukhenko
-  description: Install Gleam programming language
+  description: Install development tools and programming languages
 
   license: MIT
 
