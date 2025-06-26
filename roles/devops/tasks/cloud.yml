@@ -1,7 +1,7 @@
 ---
 - name: Install AWS CLI
-  become: yes
+  become: true
   community.general.snap:
     name: aws-cli
     state: present
-    classic: yes
+    classic: true
