@@ -5,8 +5,7 @@
   roles:
     - settings
     - shell
-    - docker
+    - containers
     - git
     - developer
     - devops
-    # - podman
