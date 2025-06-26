@@ -24,6 +24,9 @@ docker:
 dive:
   download_url: https://github.com/wagoodman/dive/releases/download
 
+slim:
+  download_url: https://github.com/slimtoolkit/slim/releases/download
+
 shell:
   packages:
     - cloc

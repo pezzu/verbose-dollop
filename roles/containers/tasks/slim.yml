@@ -1,0 +1,53 @@
+---
+- name: Get latest slim version
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/slimtoolkit/slim/releases/latest
+    method: GET
+    return_content: true
+  register: slim_latest_release
+
+- name: Set slim version fact
+  ansible.builtin.set_fact:
+    slim_version: "{{ slim_latest_release.json.tag_name }}"
+
+- name: Download slim Linux tarball
+  ansible.builtin.get_url:
+    url: "{{ slim.download_url }}/{{ slim_version }}/dist_linux.tar.gz"
+    dest: "/tmp/slim_{{ slim_version }}_linux.tar.gz"
+    mode: "0644"
+
+- name: Create temporary extraction directory
+  ansible.builtin.file:
+    path: "/tmp/slim_extract"
+    state: directory
+    mode: "0755"
+
+- name: Extract slim tarball
+  ansible.builtin.unarchive:
+    src: "/tmp/slim_{{ slim_version }}_linux.tar.gz"
+    dest: "/tmp/slim_extract"
+    remote_src: true
+
+- name: Install slim binary
+  become: true
+  ansible.builtin.copy:
+    src: "/tmp/slim_extract/dist_linux/slim"
+    dest: "/usr/local/bin/slim"
+    mode: "0755"
+    remote_src: true
+
+- name: Install slim-sensor binary
+  become: true
+  ansible.builtin.copy:
+    src: "/tmp/slim_extract/dist_linux/slim-sensor"
+    dest: "/usr/local/bin/slim-sensor"
+    mode: "0755"
+    remote_src: true
+
+- name: Clean up slim installation files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/slim_{{ slim_version }}_linux.tar.gz"
+    - "/tmp/slim_extract"
