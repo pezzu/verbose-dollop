@@ -7,3 +7,6 @@
 
 - name: Install ZSH
   ansible.builtin.import_tasks: tasks/zsh.yml
+
+- name: Install Neovim
+  ansible.builtin.import_tasks: tasks/neovim.yml

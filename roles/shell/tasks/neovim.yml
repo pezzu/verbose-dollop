@@ -1,0 +1,52 @@
+---
+- name: Install Neovim
+  block:
+    - name: Check current neovim version
+      ansible.builtin.command: "nvim --version"
+      register: nvim_version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest neovim release
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/neovim/neovim/releases/latest
+      register: nvim_release
+
+    - name: Register versions
+      ansible.builtin.set_fact:
+        current_nvim: "{{ (nvim_version.rc | int == 0) | ternary(nvim_version.stdout_lines[0] | regex_replace('^NVIM v([0-9.]+).*', '\\1'), '') }}"
+        latest_nvim: "{{ nvim_release.json.tag_name | regex_replace('^v', '') }}"
+
+    - name: Install latest neovim
+      when: latest_nvim != current_nvim
+      block:
+        - name: Download neovim AppImage
+          ansible.builtin.get_url:
+            url: "{{ nvim_release.json.assets | selectattr('name', 'equalto', 'nvim.appimage') | map(attribute='browser_download_url') | first }}"
+            dest: "/tmp/nvim.appimage"
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Create neovim installation directory
+          ansible.builtin.file:
+            path: "{{ local_bin }}"
+            state: directory
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Install neovim AppImage
+          ansible.builtin.copy:
+            src: "/tmp/nvim.appimage"
+            dest: "{{ local_bin }}/nvim"
+            mode: "u=rwx,g=rx,o=rx"
+            remote_src: true
+
+        - name: Create neovim symlink for compatibility
+          ansible.builtin.file:
+            src: "{{ local_bin }}/nvim"
+            dest: "{{ local_bin }}/neovim"
+            state: link
+
+        - name: Clean up downloaded file
+          ansible.builtin.file:
+            path: "/tmp/nvim.appimage"
+            state: absent
