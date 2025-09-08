@@ -12,7 +12,7 @@
 
 - name: Download dive deb package
   ansible.builtin.get_url:
-    url: "{{ dive.download_url }}/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb"
+    url: "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb"
     dest: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
     mode: "0644"
 

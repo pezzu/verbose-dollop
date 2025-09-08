@@ -1,4 +1,6 @@
 ---
+aliases_file: ~/.aliases
+env_file: ~/.env
 local_bin: ~/.local/bin/
 
 git:
@@ -16,16 +18,6 @@ git:
       glog: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
     core:
       pager: less -F -X
-
-docker:
-  repo_url: https://download.docker.com/linux/ubuntu
-  apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
-
-dive:
-  download_url: https://github.com/wagoodman/dive/releases/download
-
-slim:
-  download_url: https://github.com/slimtoolkit/slim/releases/download
 
 shell:
   packages:
