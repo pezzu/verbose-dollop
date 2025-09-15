@@ -36,6 +36,7 @@ shell:
     - stow
     - tmux
     - unar
+    - xclip
     - wrk
     - zoxide
   ohmyzsh_plugins:
