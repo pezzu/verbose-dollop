@@ -32,6 +32,7 @@ shell:
     - jq
     - libpoppler-dev
     - lsd
+    - lrzsz
     - ripgrep
     - stow
     - tmux
@@ -39,6 +40,7 @@ shell:
     - xclip
     - wrk
     - zoxide
+    - zssh
   ohmyzsh_plugins:
     - git
     - vi-mode
