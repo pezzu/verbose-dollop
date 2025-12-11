@@ -6,5 +6,5 @@
       ansible.builtin.apt:
         name: "{{ item }}"
         state: present
-      loop: "{{ shell.packages }}"
+      loop: "{{ packages }}"
       when: ansible_os_family == 'Debian'

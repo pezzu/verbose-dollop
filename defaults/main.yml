@@ -1,8 +1,4 @@
 ---
-aliases_file: ~/.aliases
-env_file: ~/.env
-local_bin: ~/.local/bin/
-
 git:
   config:
     user:
@@ -18,32 +14,6 @@ git:
       glog: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
     core:
       pager: less -F -X
-
-shell:
-  packages:
-    - cloc
-    - entr
-    - fd-find
-    - ffmpeg
-    - ffmpegthumbnailer
-    - fzf
-    - graphviz
-    - imagemagick
-    - jq
-    - libpoppler-dev
-    - lsd
-    - lrzsz
-    - ripgrep
-    - stow
-    - tmux
-    - unar
-    - xclip
-    - wrk
-    - zoxide
-    - zssh
-  ohmyzsh_plugins:
-    - git
-    - vi-mode
 
 podman:
   docker_bindings: false

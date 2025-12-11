@@ -1,0 +1,27 @@
+local_bin: ~/.local/bin/
+
+packages:
+  - bat
+  - cloc
+  - entr
+  - fd-find
+  - ffmpeg
+  - ffmpegthumbnailer
+  - fzf
+  - graphviz
+  - imagemagick
+  - jq
+  - libpoppler-dev
+  - lsd
+  - lrzsz
+  - ripgrep
+  - stow
+  - tmux
+  - unar
+  - xclip
+  - wrk
+  - zoxide
+  - zssh
+ohmyzsh_plugins:
+  - git
+  - vi-mode
