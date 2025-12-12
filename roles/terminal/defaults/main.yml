@@ -1,5 +1,20 @@
 local_bin: ~/.local/bin/
 
+git:
+  user:
+    name: Peter Sukhenko
+    email: 7243796+pezzu@users.noreply.github.com
+  alias:
+    br: branch --sort=-committerdate
+    ci: commit
+    ca: commit --all
+    co: checkout
+    rb: rebase
+    st: status
+    glog: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+  core:
+    pager: less -F -X
+
 packages:
   - bat
   - cloc
@@ -22,6 +37,62 @@ packages:
   - wrk
   - zoxide
   - zssh
+
 ohmyzsh_plugins:
   - git
   - vi-mode
+
+nerd_fonts:
+  # version: "HEAD"
+  version: "v3.3.0"
+  fonts:
+    - Agave
+    - AnonymousPro
+    - Arimo
+    - AurulentSansMono
+    - BitstreamVeraSansMono
+    - CascadiaCode
+    - CodeNewRoman
+    - ComicShannsMono
+    - Cousine
+    - DaddyTimeMono
+    - DejaVuSansMono
+    - DroidSansMono
+    - EnvyCodeR
+    - FantasqueSansMono
+    - FiraCode
+    - FiraMono
+    - Go-Mono
+    - Hack
+    - Hasklig
+    - Hermit
+    - IBMPlexMono
+    - Inconsolata
+    - InconsolataGo
+    - InconsolataLGC
+    - Iosevka
+    - IosevkaTerm
+    - JetBrainsMono
+    - Lekton
+    - LiberationMono
+    - Lilex
+    - Meslo
+    - Monofur
+    - Monoid
+    - Mononoki
+    - MPlus
+    - Noto
+    - OpenDyslexic
+    - Overpass
+    - ProFont
+    - RobotoMono
+    - ShareTechMono
+    - SourceCodePro
+    - SpaceMono
+    - NerdFontsSymbolsOnly
+    - Terminus
+    - Tinos
+    - Ubuntu
+    - UbuntuMono
+    - VictorMono
+    - iA-Writer

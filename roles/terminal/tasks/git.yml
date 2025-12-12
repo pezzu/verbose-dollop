@@ -7,6 +7,6 @@
 
 - name: config
   include_tasks: git_config_section.yml
-  loop: "{{ git.config | dict2items }}"
+  loop: "{{ git | dict2items }}"
   loop_control:
     loop_var: section
