@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function ensure_not_root() {
     if [ "$EUID" -eq 0 ]
@@ -15,7 +15,7 @@ function prepare_machine() {
     echo "Installing required packages"
     sudo -n apt -q -qq update -y
     sudo -n apt -q -qq install -y python3 python3-pip
-    
+
     echo "Installing Ansible"
     sudo -n apt-add-repository --yes --no-update ppa:ansible/ansible
     sudo -n apt -q -qq install -y ansible
@@ -28,7 +28,7 @@ function install_requirements () {
 
 function run_playbook() {
     echo "Running playbook"
-    ansible-playbook ./playbook.yml --extra-vars "@./defaults/main.yml"
+    ansible-playbook ./playbook.yml
 }
 
 ensure_not_root
