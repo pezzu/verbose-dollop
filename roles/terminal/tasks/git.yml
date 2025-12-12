@@ -6,7 +6,7 @@
     state: present
 
 - name: config
-  include_tasks: config_section.yml
+  include_tasks: git_config_section.yml
   loop: "{{ git.config | dict2items }}"
   loop_control:
     loop_var: section
