@@ -1,5 +1,8 @@
 ---
-- name: Installing system packages
+- name: Install Git
+  ansible.builtin.import_tasks: tasks/git.yml
+
+- name: Install system packages
   ansible.builtin.import_tasks: tasks/packages.yml
 
 - name: Install Nerd Fonts
