@@ -5,6 +5,9 @@
 - name: Install Homebrew
   ansible.builtin.import_tasks: tasks/brew.yml
 
+- name: Install GAH
+  ansible.builtin.import_tasks: tasks/gah.yml
+
 - name: Install Nerd Fonts
   ansible.builtin.import_tasks: tasks/nerd_fonts.yml
 
