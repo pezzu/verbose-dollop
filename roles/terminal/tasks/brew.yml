@@ -1,0 +1,43 @@
+---
+- name: Install Homebrew
+  block:
+    - name: Check current Homebrew version
+      ansible.builtin.command: brew --version
+      register: terminal_brew_version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest Homebrew release
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/Homebrew/brew/releases/latest
+      register: terminal_brew_release
+
+    - name: Register versions
+      ansible.builtin.set_fact:
+        terminal_current_brew: >-
+          {{ (terminal_brew_version.rc | int == 0) | ternary(
+            terminal_brew_version.stdout_lines[0] | regex_replace('^Homebrew ([0-9.]+).*', '\1'),
+            ''
+          ) }}
+        terminal_latest_brew: "{{ terminal_brew_release.json.tag_name }}"
+
+    - name: Install latest Homebrew
+      when: terminal_latest_brew != terminal_current_brew
+      block:
+        - name: Download Homebrew install script
+          ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+            dest: /tmp/brew_install.sh
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Run Homebrew install script
+          ansible.builtin.command: /tmp/brew_install.sh
+          environment:
+            NONINTERACTIVE: "1"
+          changed_when: true
+
+        - name: Clean up install script
+          ansible.builtin.file:
+            path: /tmp/brew_install.sh
+            state: absent

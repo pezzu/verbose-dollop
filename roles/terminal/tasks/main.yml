@@ -2,6 +2,9 @@
 - name: Install Git
   ansible.builtin.import_tasks: tasks/git.yml
 
+- name: Install Homebrew
+  ansible.builtin.import_tasks: tasks/brew.yml
+
 - name: Install system packages
   ansible.builtin.import_tasks: tasks/packages.yml
 
