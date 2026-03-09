@@ -1,21 +1,6 @@
 ---
 local_bin: ~/.local/bin/
 
-git:
-  user:
-    name: Peter Sukhenko
-    email: 7243796+pezzu@users.noreply.github.com
-  alias:
-    br: branch --sort=-committerdate
-    ci: commit
-    ca: commit --all
-    co: checkout
-    rb: rebase
-    st: status
-    glog: log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
-  core:
-    pager: less -F -X
-
 packages:
   - bat
   - build-essential

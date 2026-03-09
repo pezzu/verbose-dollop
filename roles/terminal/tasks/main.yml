@@ -1,12 +1,9 @@
 ---
-- name: Install Git
-  ansible.builtin.import_tasks: tasks/git.yml
+- name: Install system packages
+  ansible.builtin.import_tasks: tasks/packages.yml
 
 - name: Install Homebrew
   ansible.builtin.import_tasks: tasks/brew.yml
-
-- name: Install system packages
-  ansible.builtin.import_tasks: tasks/packages.yml
 
 - name: Install Nerd Fonts
   ansible.builtin.import_tasks: tasks/nerd_fonts.yml
