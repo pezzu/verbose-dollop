@@ -18,18 +18,23 @@ git:
 
 packages:
   - bat
+  - build-essential
   - cloc
+  - curl
   - entr
   - fd-find
   - ffmpeg
   - ffmpegthumbnailer
+  - file
   - fzf
+  - git
   - graphviz
   - imagemagick
   - jq
   - libpoppler-dev
   - lsd
   - lrzsz
+  - procps
   - ripgrep
   - stow
   - tmux
