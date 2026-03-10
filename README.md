@@ -16,7 +16,6 @@ Ansible script to provision my development environment on debian-based system
 ## List of packages
 
 - [x] ansible
-- [ ] AWS cli
 - [ ] Code
 - [ ] compilers
   - [x] gleam
@@ -26,10 +25,9 @@ Ansible script to provision my development environment on debian-based system
   - [ ] rust
 - [x] docker
 - [x] git
-- [ ] Github
+- [ ] GitHub
   - [ ] gh cli
   - [ ] act
-  - [ ] copilot cli
 - [x] devops
   - [x] Hashicorp stack
     - [x] terraform
@@ -43,7 +41,7 @@ Ansible script to provision my development environment on debian-based system
   - [x] cloud
     - [x] aws cli
 - [x] nerd-fonts
-- [ ] neovim
+- [x] neovim
 - [x] podman
 - [x] Tools
   - entr
