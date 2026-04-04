@@ -1,7 +1,7 @@
 ---
-local_bin: ~/.local/bin/
+system_local_bin: ~/.local/bin/
 
-packages:
+system_packages:
   - bat
   - build-essential
   - cloc
@@ -29,11 +29,11 @@ packages:
   - zoxide
   - zssh
 
-ohmyzsh_plugins:
+system_ohmyzsh_plugins:
   - git
   - vi-mode
 
-nerd_fonts:
+system_nerd_fonts:
   # version: "HEAD"
   version: "v3.3.0"
   fonts:

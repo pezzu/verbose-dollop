@@ -1,0 +1,44 @@
+---
+- name: Install GAH
+  vars:
+    system_gah_install_script_url: https://raw.githubusercontent.com/get-gah/gah/refs/heads/master/tools/install.sh
+    system_gah_install_script_path: /tmp/gah_install.sh
+  block:
+    - name: Check current GAH version
+      ansible.builtin.command: gah version
+      register: system_gah_version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest GAH release version
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/get-gah/gah/releases/latest
+      register: system_gah_release
+
+    - name: Register versions
+      ansible.builtin.set_fact:
+        system_current_gah: >-
+          {{ (system_gah_version.rc | int == 0) | ternary(
+            system_gah_version.stdout | split | last,
+            ''
+          ) }}
+        system_latest_gah: "{{ system_gah_release.json.tag_name }}"
+
+    - name: Install latest GAH
+      when: system_latest_gah != system_current_gah
+      block:
+        - name: Download GAH install script
+          ansible.builtin.get_url:
+            url: "{{ system_gah_install_script_url }}"
+            dest: "{{ system_gah_install_script_path }}"
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Run GAH install script
+          ansible.builtin.command: "{{ system_gah_install_script_path }}"
+          changed_when: true
+
+        - name: Clean up install script
+          ansible.builtin.file:
+            path: "{{ system_gah_install_script_path }}"
+            state: absent

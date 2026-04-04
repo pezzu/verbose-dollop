@@ -3,7 +3,6 @@
   hosts: localhost
   connection: local
   roles:
-    - settings
-    - terminal
+    - system
     - devtools
     - devops

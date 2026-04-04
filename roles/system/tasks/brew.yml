@@ -3,7 +3,7 @@
   block:
     - name: Check current Homebrew version
       ansible.builtin.command: brew --version
-      register: terminal_brew_version
+      register: system_brew_version
       changed_when: false
       failed_when: false
 
@@ -11,19 +11,19 @@
       ansible.builtin.uri:
         method: GET
         url: https://api.github.com/repos/Homebrew/brew/releases/latest
-      register: terminal_brew_release
+      register: system_brew_release
 
     - name: Register versions
       ansible.builtin.set_fact:
-        terminal_current_brew: >-
-          {{ (terminal_brew_version.rc | int == 0) | ternary(
-            terminal_brew_version.stdout_lines[0] | regex_replace('^Homebrew ([0-9.]+).*', '\1'),
+        system_current_brew: >-
+          {{ (system_brew_version.rc | int == 0) | ternary(
+            system_brew_version.stdout_lines[0] | regex_replace('^Homebrew ([0-9.]+).*', '\1'),
             ''
           ) }}
-        terminal_latest_brew: "{{ terminal_brew_release.json.tag_name }}"
+        system_latest_brew: "{{ system_brew_release.json.tag_name }}"
 
     - name: Install latest Homebrew
-      when: terminal_latest_brew != terminal_current_brew
+      when: system_latest_brew != system_current_brew
       block:
         - name: Download Homebrew install script
           ansible.builtin.get_url:

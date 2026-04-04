@@ -1,4 +1,7 @@
 ---
+- name: Setup system settings
+  ansible.builtin.import_tasks: tasks/settings.yml
+
 - name: Install system packages
   ansible.builtin.import_tasks: tasks/packages.yml
 

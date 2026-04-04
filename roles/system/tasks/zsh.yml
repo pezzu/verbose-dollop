@@ -10,26 +10,26 @@
     - name: Check if Oh My Zsh is installed
       ansible.builtin.stat:
         path: ~/.oh-my-zsh
-      register: ohmyzsh_dir
+      register: system_ohmyzsh_dir
 
     - name: Download install script
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/ohmyzsh-install.sh
         mode: 0775
-      when: not ohmyzsh_dir.stat.exists
+      when: not system_ohmyzsh_dir.stat.exists
 
     - name: Run install script
       ansible.builtin.command:
         cmd: /tmp/ohmyzsh-install.sh
         creates: ~/.oh-my-zsh
-      when: not ohmyzsh_dir.stat.exists
+      when: not system_ohmyzsh_dir.stat.exists
 
     - name: Setup plugins
       ansible.builtin.lineinfile:
         path: ~/.zshrc
         search_string: plugins=
-        value: plugins=({{ ohmyzsh_plugins | join(' ') }})
+        value: plugins=({{ system_ohmyzsh_plugins | join(' ') }})
 
 - name: Set ZSH as default shell
   become: true

@@ -5,11 +5,11 @@
     dest: "/tmp/nerd-fonts"
     depth: 1
     force: true
-    version: "{{ nerd_fonts.version }}"
+    version: "{{ system_nerd_fonts.version }}"
 
 - name: Install Nerd fonts
   ansible.builtin.shell:
     cmd: "/tmp/nerd-fonts/install.sh {{ item }}"
-  loop: "{{ nerd_fonts.fonts }}"
+  loop: "{{ system_nerd_fonts.fonts }}"
   notify:
     - Update font cache
