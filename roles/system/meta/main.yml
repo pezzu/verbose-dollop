@@ -3,7 +3,7 @@ galaxy_info:
   author: Peter Sukhenko
   description: >
     Baseline system setup: apt packages, zsh + Oh My Zsh, Neovim, Nerd Fonts,
-    Homebrew, GAH, and keyboard configuration (CapsLock ↔ Escape).
+    Homebrew, GAH, Yazi terminal file manager, and keyboard configuration (CapsLock ↔ Escape).
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
@@ -11,5 +11,6 @@ galaxy_info:
     - zsh
     - neovim
     - fonts
+    - yazi
 
 dependencies: []

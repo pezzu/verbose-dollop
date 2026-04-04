@@ -23,6 +23,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 - [x] [Nerd Fonts](https://www.nerdfonts.com) (configurable selection)
 - [x] [Homebrew](https://brew.sh)
 - [x] [GAH](https://github.com/get-gah/gah)
+- [x] [Yazi](https://github.com/sxyazi/yazi) — terminal file manager
 - [x] Keyboard: CapsLock ↔ Escape swap
 
 ### DevTools

@@ -43,6 +43,11 @@ latest GitHub release and running the official install script when needed.
 
 Installs or upgrades [GAH](https://github.com/get-gah/gah) using the same version-check pattern.
 
+### Yazi
+
+Installs [Yazi](https://github.com/sxyazi/yazi) via Homebrew. A blazing fast terminal file
+manager written in Rust, based on async I/O.
+
 ### Keyboard
 
 Swaps CapsLock and Escape keys by updating `/etc/default/keyboard`

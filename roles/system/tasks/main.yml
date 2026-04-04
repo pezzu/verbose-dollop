@@ -19,3 +19,6 @@
 
 - name: Install Neovim
   ansible.builtin.import_tasks: tasks/neovim.yml
+
+- name: Install Yazi
+  ansible.builtin.import_tasks: tasks/yazi.yml

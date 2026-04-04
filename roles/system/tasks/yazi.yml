@@ -1,0 +1,7 @@
+---
+- name: Install Yazi
+  community.general.homebrew:
+    name: yazi
+    state: present
+    path: >-
+      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
