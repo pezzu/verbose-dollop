@@ -39,6 +39,8 @@ jobs:
   integration:
     name: Integration
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check out the codebase
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -51,7 +53,10 @@ jobs:
       - name: Test for idempotence
         run: |
           trace_file=$(mktemp)
-          ./install.sh | tee -a ${trace_file}
-          tail ${trace_file} |
-            grep -q 'changed=2.*failed=0' && \
-            (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+          ./install.sh | tee -a "${trace_file}"
+          if tail "${trace_file}" | grep -q 'changed=2.*failed=0'; then
+            echo 'Idempotence test: pass'
+          else
+            echo 'Idempotence test: fail'
+            exit 1
+          fi
