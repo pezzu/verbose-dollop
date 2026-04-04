@@ -47,6 +47,7 @@ Always use native YAML key:value syntax -- never inline `key=value`:
 - **Always name plays, tasks, and blocks** -- names appear in output and logs
 - **Always specify `state:`** -- even when it matches the module default
 - **Use FQCN** -- `ansible.builtin.copy` not `copy`; `ansible.posix.seboolean` not `seboolean`
+- **Use `ansible_facts[...]` for gathered facts** -- avoid top-level injected `ansible_*` fact vars; `INJECT_FACTS_AS_VARS=True` is deprecated and removed in ansible-core 2.24
 - **Use whitespace** -- blank line before each task/block for readability
 - **Use comments** -- explain _why_, not just _what_
 - **Use `block`/`rescue`** for error handling and rollback logic
@@ -163,7 +164,7 @@ logic, and deployment pipeline integration.
 Key patterns:
 
 - **Tag-based selective execution**: `--tags abrt,audit,hardening,...`
-- **OS-aware roles**: branch on `ansible_distribution` and `ansible_distribution_major_version`
+- **OS-aware roles**: branch on `ansible_facts['distribution']` and `ansible_facts['distribution_major_version']`
 - **Host group taxonomy**: `APP`, `DB`, `DMZ`/`SCCLIS` with `SCC:children` parent
 - **Dynamic inventory from OCI metadata**: Bash scripts generate INI inventory at runtime
 - **Retry mechanism**: up to 5 attempts with progressive backoff for unreachable hosts

@@ -191,7 +191,20 @@ used across `vm-setup/` roles:
 ```yaml
 # roles/packages/tasks/main.yml
 - name: Include OS-specific package tasks
-  ansible.builtin.include_tasks: "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_facts['distribution'] }}_{{ ansible_facts['distribution_major_version'] }}.yml"
+```
+
+## Fact Access Migration (Ansible Core 2.24+)
+
+Use `ansible_facts[...]` for gathered facts instead of top-level injected
+`ansible_*` fact variables:
+
+```yaml
+# Deprecated -> Preferred
+# ansible_os_family        -> ansible_facts['os_family']
+# ansible_architecture     -> ansible_facts['architecture']
+# ansible_distribution     -> ansible_facts['distribution']
+# ansible_env.PATH         -> ansible_facts['env']['PATH']
 ```
 
 ```yaml
