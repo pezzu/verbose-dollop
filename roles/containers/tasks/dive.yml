@@ -10,19 +10,23 @@
   ansible.builtin.set_fact:
     dive_version: "{{ dive_latest_release.json.tag_name | regex_replace('^v', '') }}"
 
+- name: Set dive deb filename
+  ansible.builtin.set_fact:
+    dive_deb: "dive_{{ dive_version }}_linux_amd64.deb"
+
 - name: Download dive deb package
   ansible.builtin.get_url:
-    url: "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb"
-    dest: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    url: "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/{{ dive_deb }}"
+    dest: "/tmp/{{ dive_deb }}"
     mode: "0644"
 
 - name: Install dive from deb package
   become: true
   ansible.builtin.apt:
-    deb: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    deb: "/tmp/{{ dive_deb }}"
     state: present
 
 - name: Clean up dive deb package
   ansible.builtin.file:
-    path: "/tmp/dive_{{ dive_version }}_linux_amd64.deb"
+    path: "/tmp/{{ dive_deb }}"
     state: absent

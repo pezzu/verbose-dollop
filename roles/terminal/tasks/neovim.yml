@@ -15,15 +15,24 @@
 
     - name: Register versions
       ansible.builtin.set_fact:
-        current_nvim: "{{ (nvim_version.rc | int == 0) | ternary(nvim_version.stdout_lines[0] | regex_replace('^NVIM v([0-9.]+).*', '\\1'), '') }}"
+        current_nvim: >-
+          {{ (nvim_version.rc | int == 0) | ternary(
+            nvim_version.stdout_lines[0] | regex_replace('^NVIM v([0-9.]+).*', '\1'),
+            '') }}
         latest_nvim: "{{ nvim_release.json.tag_name | regex_replace('^v', '') }}"
 
     - name: Install latest neovim
       when: latest_nvim != current_nvim
       block:
         - name: Download neovim AppImage
+          vars:
+            nvim_appimage_url: >-
+              {{ nvim_release.json.assets
+                | selectattr('name', 'equalto', 'nvim.appimage')
+                | map(attribute='browser_download_url')
+                | first }}
           ansible.builtin.get_url:
-            url: "{{ nvim_release.json.assets | selectattr('name', 'equalto', 'nvim.appimage') | map(attribute='browser_download_url') | first }}"
+            url: "{{ nvim_appimage_url }}"
             dest: "/tmp/nvim.appimage"
             mode: "u=rwx,g=rx,o=rx"
 
