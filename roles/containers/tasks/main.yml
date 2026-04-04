@@ -4,9 +4,3 @@
 
 - name: Import Podman tasks
   ansible.builtin.import_tasks: podman.yml
-
-- name: Import Dive tasks
-  ansible.builtin.import_tasks: dive.yml
-
-- name: Import Slim tasks
-  ansible.builtin.import_tasks: slim.yml

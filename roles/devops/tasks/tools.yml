@@ -1,6 +1,10 @@
 ---
-- name: Install hey
+- name: Install DevOps tools
   community.general.homebrew:
-    name: hey
+    name: "{{ item }}"
     state: present
     path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop:
+    - hey
+    - dive
+    - mintoolkit
