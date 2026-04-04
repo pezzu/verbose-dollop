@@ -1,29 +1,12 @@
 ---
-- name: Install Hashicorp stack
-  become: true
-  block:
-    - name: Download HashiCorp GPG key
-      ansible.builtin.apt_key:
-        id: AA16FCBCA621E701
-        url: https://apt.releases.hashicorp.com/gpg
-        keyring: /usr/share/keyrings/hashicorp-archive-keyring.gpg
-        state: present
-
-    - name: Add HashiCorp repository
-      ansible.builtin.apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-          https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
-        state: present
-        filename: hashicorp
-
-    - name: Install tools
-      ansible.builtin.apt:
-        name: "{{ item }}"
-        update_cache: true
-        state: present
-      loop:
-        - consul
-        - nomad
-        - packer
-        - terraform
-        - vagrant
+- name: Install Hashicorp tools
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop:
+    - consul
+    - nomad
+    - packer
+    - vagrant
+    - tfenv
