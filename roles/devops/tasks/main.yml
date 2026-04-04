@@ -1,17 +1,11 @@
 ---
-- name: Install minikube
-  ansible.builtin.import_tasks: tasks/minikube.yml
-
-- name: Install kubectl
-  ansible.builtin.import_tasks: tasks/kubectl.yml
-
-- name: Install helm
-  ansible.builtin.import_tasks: tasks/helm.yml
+- name: Install Kubernetes tools
+  ansible.builtin.import_tasks: tasks/k8s.yml
 
 - name: Install Hashicorp stack
   ansible.builtin.import_tasks: tasks/hashicorp.yml
 
-- name: Install cloud CLIs
+- name: Install Cloud cli
   ansible.builtin.import_tasks: tasks/cloud.yml
 
 - name: Install DevOps tools
