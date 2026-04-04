@@ -6,6 +6,10 @@ function is_interactive() {
     [[ -t 0 && -t 1 ]]
 }
 
+function has_command() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 function ensure_not_root() {
     if [ "$EUID" -eq 0 ]
     then echo "This script cannot be run as root"
@@ -31,13 +35,38 @@ function authorize_sudo() {
 }
 
 function prepare_machine() {
-    echo "Installing required packages"
-    sudo -n apt -q -qq update -y
-    sudo -n apt -q -qq install -y python3 python3-pip
+    echo "Installing python"
+
+    local install_python=false
+    local install_ansible=false
+
+    if ! has_command python3
+    then
+        install_python=true
+    fi
+
+    if ! has_command ansible
+    then
+        install_ansible=true
+    fi
+
+    if $install_python || $install_ansible
+    then
+      authorize_sudo
+      sudo -n apt -q -qq update -y
+    fi
+
+    if $install_python
+    then
+        sudo -n apt -q -qq install -y python3 python3-pip
+    fi
 
     echo "Installing ansible"
-    sudo -n apt-add-repository --yes --no-update ppa:ansible/ansible
-    sudo -n apt -q -qq install -y ansible
+    if $install_ansible
+    then
+        sudo -n apt-add-repository --yes --no-update ppa:ansible/ansible
+        sudo -n apt -q -qq install -y ansible
+    fi
 }
 
 function install_requirements () {
@@ -66,7 +95,6 @@ function run_playbook() {
 }
 
 ensure_not_root
-authorize_sudo
 prepare_machine
 install_requirements
 run_playbook
