@@ -20,7 +20,7 @@
       ansible.builtin.set_fact:
         terminal_current_gah: >-
           {{ (terminal_gah_version.rc | int == 0) | ternary(
-            'v' + (terminal_gah_version.stdout | split | last),
+            terminal_gah_version.stdout | split | last,
             ''
           ) }}
         terminal_latest_gah: "{{ terminal_gah_release.json.tag_name }}"
