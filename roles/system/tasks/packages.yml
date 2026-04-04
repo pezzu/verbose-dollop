@@ -18,7 +18,7 @@
         force: false
       loop:
         - src: "{{ lookup('pipe', 'which fdfind') }}"
-          dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/fd"
+          dest: "{{ system_local_bin }}/fd"
         - src: "{{ lookup('pipe', 'which batcat') }}"
-          dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/bat"
+          dest: "{{ system_local_bin }}/bat"
       ignore_errors: false
