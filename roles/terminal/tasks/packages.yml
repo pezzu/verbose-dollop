@@ -7,7 +7,7 @@
         name: "{{ item }}"
         state: present
       loop: "{{ packages }}"
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
 
     - name: Create compatibility link
       become: false
@@ -18,7 +18,7 @@
         force: false
       loop:
         - src: "{{ lookup('pipe', 'which fdfind') }}"
-          dest: "{{ ansible_facts.env.HOME }}/.local/bin/fd"
+          dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/fd"
         - src: "{{ lookup('pipe', 'which batcat') }}"
-          dest: "{{ ansible_facts.env.HOME }}/.local/bin/bat"
+          dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/bat"
       ignore_errors: false

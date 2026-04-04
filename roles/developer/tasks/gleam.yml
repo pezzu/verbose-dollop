@@ -27,7 +27,7 @@
               {{
                 release.json.assets
                 | map(attribute='browser_download_url')
-                | select('match', '^.*-' + ansible_architecture + '-.*-linux-.*\.tar\.gz$')
+                | select('match', '^.*-' + ansible_facts['architecture'] + '-.*-linux-.*\.tar\.gz$')
                 | first
               }}
             dest: /tmp
