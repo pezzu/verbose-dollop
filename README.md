@@ -2,7 +2,7 @@
 
 Ansible script to provision my development environment on debian-based system
 
-[![CI status](https://github.com/pezzu/verbose-dollop/actions/workflows/ci.yml/badge.svg)](https://github.com/pezzu/verbose-dollop/actions/workflows/ci.yml)
+[![Checks](https://github.com/pezzu/verbose-dollop/actions/workflows/checks.yml/badge.svg)](https://github.com/pezzu/verbose-dollop/actions/workflows/checks.yml)
 
 ## Installation
 
