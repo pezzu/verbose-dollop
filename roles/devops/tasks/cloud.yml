@@ -1,18 +1,10 @@
 ---
-- name: Install aws cli
+- name: Install cloud CLI packages
   community.general.homebrew:
-    name: awscli
+    name: "{{ item }}"
     state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
-
-- name: Install azure cli
-  community.general.homebrew:
-    name: azure-cli
-    state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
-
-- name: Install oci cli
-  community.general.homebrew:
-    name: oci-cli
-    state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
+    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop:
+    - awscli
+    - azure-cli
+    - oci-cli

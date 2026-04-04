@@ -1,18 +1,10 @@
 ---
-- name: Install kubectl
+- name: Install Kubernetes packages
   community.general.homebrew:
-    name: kubectl
+    name: "{{ item }}"
     state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
-
-- name: Install minikube
-  community.general.homebrew:
-    name: minikube
-    state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
-
-- name: Install helm
-  community.general.homebrew:
-    name: helm
-    state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts[\"env\"][\"PATH\"] }}"
+    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
+  loop:
+    - kubectl
+    - minikube
+    - helm
