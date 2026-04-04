@@ -1,58 +1,65 @@
 # verbose-dollop
 
-Ansible script to provision my development environment on debian-based system
+Ansible playbook to provision a development environment on a Debian-based system.
 
 [![Checks](https://github.com/pezzu/verbose-dollop/actions/workflows/checks.yml/badge.svg)](https://github.com/pezzu/verbose-dollop/actions/workflows/checks.yml)
 
 ## Installation
 
-1. Adjust personal settings in defautls/main.yml
-1. Run
-
 ```sh
 ./install.sh
 ```
 
-## List of packages
+## Roles
 
-- [x] ansible
-- [ ] Code
-- [ ] compilers
+### System
+
+Baseline system configuration and developer tooling. See [`roles/system`](roles/system/README.md).
+
+- [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `fzf`, `git`,
+  `graphviz`, `imagemagick`, `jq`, `lsd`, `ripgrep`, `stow`, `tmux`, `xclip`, `zoxide`, and more
+- [x] zsh + [Oh My Zsh](https://ohmyz.sh) (configurable plugins)
+- [x] [Neovim](https://neovim.io) (latest AppImage, auto-updated)
+- [x] [Nerd Fonts](https://www.nerdfonts.com) (configurable selection)
+- [x] [Homebrew](https://brew.sh)
+- [x] [GAH](https://github.com/get-gah/gah)
+- [x] Keyboard: CapsLock ↔ Escape swap
+
+### DevTools
+
+Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/README.md).
+
+- [ ] Compilers / language runtimes
   - [x] gleam
+  - [x] python
   - [ ] go
-  - [ ] nvm
-  - [ ] python
+  - [ ] nvm / Node.js
   - [ ] rust
-- [x] docker
-- [x] git
-- [ ] GitHub
-  - [ ] gh cli
-  - [ ] act
-- [x] devops
-  - [x] Hashicorp stack
-    - [x] terraform
-    - [x] nomad
-    - [x] packman
-    - [x] vagrant
-  - [x] kubernetes
-    - [x] minikube
-    - [x] kubectl
-    - [x] helm
-  - [x] cloud
-    - [x] aws cli
-- [x] nerd-fonts
-- [x] neovim
-- [x] podman
+- [x] [Docker CE](https://docs.docker.com/engine/install/debian/) (engine, buildx, compose plugin)
+- [x] [Podman](https://podman.io) (optional Docker-compatible bindings)
+- [ ] GitHub tooling
+  - [ ] [gh](https://cli.github.com) — GitHub CLI
+  - [ ] [act](https://github.com/nektos/act) — run GitHub Actions locally
+
+### DevOps
+
+Infrastructure, cloud, and Kubernetes tooling. See [`roles/devops`](roles/devops/README.md).
+
+- [x] Kubernetes
+  - [x] [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+  - [x] [minikube](https://minikube.sigs.k8s.io)
+  - [x] [helm](https://helm.sh)
+- [x] HashiCorp
+  - [x] [tfenv](https://github.com/tfutils/tfenv) (Terraform version manager)
+  - [x] [consul](https://www.consul.io)
+  - [x] [nomad](https://www.nomadproject.io)
+  - [x] [packer](https://www.packer.io)
+  - [x] [vagrant](https://www.vagrantup.com)
+- [x] Cloud CLIs
+  - [x] [AWS CLI](https://aws.amazon.com/cli/)
+  - [x] [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
+  - [x] [OCI CLI](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm)
 - [x] Tools
-  - entr
-  - fzf
-  - graphviz
-  - jq
-  - neofetch
-  - nnn
-  - ranger
-  - stow
-  - tmux
-  - wrk
-  - yq
-- [x] zsh
+  - [x] [hey](https://github.com/rakyll/hey) — HTTP load generator
+  - [x] [dive](https://github.com/wagoodman/dive) — Docker image inspector
+  - [x] [mintoolkit](https://github.com/mintoolkit/mint) — container image minifier

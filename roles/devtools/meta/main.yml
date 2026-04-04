@@ -1,12 +1,14 @@
 ---
 galaxy_info:
   author: Peter Sukhenko
-  description: Install container tools (Docker and Podman)
-
+  description: >
+    Install container runtimes — Docker CE and Podman
+    with optional Docker-compatible bindings.
   license: MIT
-
   min_ansible_version: "2.9"
-
-  galaxy_tags: []
+  galaxy_tags:
+    - docker
+    - podman
+    - containers
 
 dependencies: []
