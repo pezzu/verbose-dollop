@@ -5,6 +5,5 @@
   roles:
     - settings
     - terminal
-    - containers
-    - developer
+    - devtools
     - devops

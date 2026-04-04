@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Peter Sukhenko
-  description: Install development tools and programming languages
+  description: Install container tools (Docker and Podman)
 
   license: MIT
 
