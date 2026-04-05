@@ -1,0 +1,7 @@
+---
+- name: Install OpenCode
+  community.general.homebrew:
+    name: opencode
+    state: present
+    path: >-
+      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
