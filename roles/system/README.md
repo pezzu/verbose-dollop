@@ -19,7 +19,7 @@ Also creates compatibility symlinks for `fd` and `bat` in `~/.local/bin/`.
 Installs `zsh` via apt, installs [Oh My Zsh](https://ohmyz.sh) if not already present, configures
 plugins in `~/.zshrc`, and sets `zsh` as the default shell.
 
-Plugins are configurable via `system_ohmyzsh_plugins` (defaults: `git`, `vi-mode`).
+Plugins default to `git` and `vi-mode`.
 
 ### Neovim
 
@@ -58,7 +58,6 @@ Swaps CapsLock and Escape keys by updating `/etc/default/keyboard`
 |---|---|---|
 | `system_local_bin` | `~/.local/bin/` | Directory for local user binaries and symlinks |
 | `system_packages` | *(see defaults/main.yml)* | List of apt packages to install |
-| `system_ohmyzsh_plugins` | `[git, vi-mode]` | Oh My Zsh plugins to enable in `~/.zshrc` |
 | `system_nerd_fonts.version` | `v3.3.0` | Nerd Fonts release tag to install |
 | `system_nerd_fonts.fonts` | *(see defaults/main.yml)* | List of font names to install |
 
