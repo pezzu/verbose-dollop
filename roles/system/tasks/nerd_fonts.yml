@@ -1,15 +1,43 @@
 ---
-- name: Download Nerd fonts
-  ansible.builtin.git:
-    repo: "https://github.com/ryanoasis/nerd-fonts.git"
-    dest: "/tmp/nerd-fonts"
-    depth: 1
-    force: true
-    version: "{{ system_nerd_fonts.version }}"
+- name: Check Nerd Fonts version marker
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.nerd-fonts"
+  register: system_nerd_fonts_marker
 
-- name: Install Nerd fonts
-  ansible.builtin.shell:
-    cmd: "/tmp/nerd-fonts/install.sh {{ item }}"
-  loop: "{{ system_nerd_fonts.fonts }}"
-  notify:
-    - Update font cache
+- name: Read installed Nerd Fonts version
+  ansible.builtin.slurp:
+    src: "{{ ansible_env.HOME }}/.nerd-fonts"
+  register: system_nerd_fonts_installed
+  when: system_nerd_fonts_marker.stat.exists
+
+- name: Set installed Nerd Fonts version
+  ansible.builtin.set_fact:
+    system_installed_nerd_fonts_version: >-
+      {{ system_nerd_fonts_marker.stat.exists | ternary(
+        system_nerd_fonts_installed.content | b64decode | trim, ''
+      ) }}
+
+- name: Install Nerd Fonts
+  when: system_installed_nerd_fonts_version != system_nerd_fonts.version
+  block:
+    - name: Download Nerd fonts
+      ansible.builtin.git:
+        repo: "https://github.com/ryanoasis/nerd-fonts.git"
+        dest: "/tmp/nerd-fonts"
+        depth: 1
+        force: true
+        version: "{{ system_nerd_fonts.version }}"
+
+    - name: Install Nerd fonts
+      ansible.builtin.command:
+        cmd: "/tmp/nerd-fonts/install.sh {{ item }}"
+      loop: "{{ system_nerd_fonts.fonts }}"
+      changed_when: true
+      notify:
+        - Update font cache
+
+    - name: Record installed Nerd Fonts version
+      ansible.builtin.copy:
+        content: "{{ system_nerd_fonts.version }}"
+        dest: "{{ ansible_env.HOME }}/.nerd-fonts"
+        mode: "0644"

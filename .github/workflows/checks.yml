@@ -55,7 +55,7 @@ jobs:
         run: |
           trace_file=$(mktemp)
           ./install.sh | tee -a "${trace_file}"
-          if tail "${trace_file}" | grep -q 'changed=2.*failed=0'; then
+          if tail "${trace_file}" | grep -q 'changed=0.*failed=0'; then
             echo 'Idempotence test: pass'
           else
             echo 'Idempotence test: fail'
