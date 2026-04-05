@@ -7,3 +7,6 @@
 
 - name: Import Rustup tasks
   ansible.builtin.import_tasks: rustup.yml
+
+- name: Import Go tasks
+  ansible.builtin.import_tasks: go.yml

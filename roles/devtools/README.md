@@ -1,6 +1,6 @@
 # devtools
 
-Install container runtimes: Docker CE and Podman.
+Install container runtimes: Docker CE and Podman. Includes language toolchains: Rustup and Go.
 
 ## Components
 
@@ -30,6 +30,12 @@ Installs [rustup](https://rustup.rs) via Homebrew and initialises the stable
 Rust toolchain (`rustup default stable`). The rustup binary is keg-only and
 lives at `~/.linuxbrew/opt/rustup/bin/rustup`; add `~/.cargo/bin` to `$PATH`
 in dotfiles to use `cargo`, `rustc`, and other Rust toolchain binaries.
+
+### Go
+
+Installs [Go](https://go.dev) via Homebrew (`brew install go`), providing the
+latest stable Go toolchain. Add the Homebrew-managed Go binary directory to
+`$PATH` in dotfiles to use `go`, `gofmt`, and other Go toolchain binaries.
 
 ## Role Variables
 

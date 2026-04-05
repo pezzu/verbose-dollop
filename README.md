@@ -33,7 +33,7 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
 - [ ] Compilers / language runtimes
   - [x] gleam
   - [x] python
-  - [ ] go
+  - [x] [Go](https://go.dev) — Go programming language toolchain
   - [ ] nvm / Node.js
   - [x] [rustup](https://rustup.rs) — Rust toolchain installer
 - [x] [Docker CE](https://docs.docker.com/engine/install/debian/) (engine, buildx, compose plugin)
