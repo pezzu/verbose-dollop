@@ -7,17 +7,3 @@
         state: present
         path: >-
           /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
-
-    - name: Check installed gh extensions
-      ansible.builtin.command: gh extension list
-      register: devtools_gh_extensions
-      changed_when: false
-      environment:
-        PATH: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
-
-    - name: Install gh-act extension
-      ansible.builtin.command: gh extension install https://github.com/nektos/gh-act
-      when: "'nektos/gh-act' not in devtools_gh_extensions.stdout"
-      changed_when: true
-      environment:
-        PATH: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
