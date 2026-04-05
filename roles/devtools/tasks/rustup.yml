@@ -1,0 +1,15 @@
+---
+- name: Install Rustup
+  block:
+    - name: Install rustup via Homebrew
+      community.general.homebrew:
+        name: rustup
+        state: present
+        path: >-
+          /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
+
+    - name: Set stable as default Rust toolchain
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/opt/rustup/bin/rustup default stable
+      register: devtools_rustup_default
+      changed_when: "'downloading' in devtools_rustup_default.stdout"
+      failed_when: devtools_rustup_default.rc != 0

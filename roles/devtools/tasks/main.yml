@@ -4,3 +4,6 @@
 
 - name: Import Podman tasks
   ansible.builtin.import_tasks: podman.yml
+
+- name: Import Rustup tasks
+  ansible.builtin.import_tasks: rustup.yml

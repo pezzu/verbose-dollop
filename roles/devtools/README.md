@@ -24,6 +24,13 @@ When `devtools_podman.docker_bindings: true`, also installs:
 - `podman-docker` — drop-in `docker` CLI shim
 - `docker-compose` — Compose compatibility layer
 
+### Rustup
+
+Installs [rustup](https://rustup.rs) via Homebrew and initialises the stable
+Rust toolchain (`rustup default stable`). The rustup binary is keg-only and
+lives at `~/.linuxbrew/opt/rustup/bin/rustup`; add `~/.cargo/bin` to `$PATH`
+in dotfiles to use `cargo`, `rustc`, and other Rust toolchain binaries.
+
 ## Role Variables
 
 | Variable | Default | Description |

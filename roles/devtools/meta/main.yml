@@ -3,12 +3,15 @@ galaxy_info:
   author: Peter Sukhenko
   description: >
     Install container runtimes — Docker CE and Podman
-    with optional Docker-compatible bindings.
+    with optional Docker-compatible bindings. Includes rustup,
+    the Rust toolchain installer.
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
     - docker
     - podman
     - containers
+    - rust
+    - rustup
 
 dependencies: []
