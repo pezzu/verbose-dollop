@@ -2,7 +2,7 @@
 - name: Install Homebrew
   block:
     - name: Check current Homebrew version
-      ansible.builtin.command: brew --version
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/brew --version
       register: system_brew_version
       changed_when: false
       failed_when: false
