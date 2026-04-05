@@ -49,6 +49,11 @@ automatically.
 
 Installs [gh](https://cli.github.com) via Homebrew. 
 
+### OpenCode
+
+Installs [OpenCode](https://opencode.ai) via Homebrew (`brew install opencode`).
+OpenCode is an AI coding agent built for the terminal.
+
 ## Role Variables
 
 | Variable | Default | Description |

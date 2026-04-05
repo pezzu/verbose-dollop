@@ -16,3 +16,6 @@
 
 - name: Import gh tasks
   ansible.builtin.import_tasks: gh.yml
+
+- name: Import OpenCode tasks
+  ansible.builtin.import_tasks: opencode.yml
