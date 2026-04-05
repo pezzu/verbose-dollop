@@ -26,10 +26,6 @@
       when: not system_ohmyzsh_dir.stat.exists
 
     - name: Setup plugins
-      vars:
-        system_ohmyzsh_plugins:
-          - git
-          - vi-mode
       ansible.builtin.lineinfile:
         path: ~/.zshrc
         search_string: plugins=

@@ -1,0 +1,87 @@
+---
+system_packages:
+  - bat
+  - build-essential
+  - cloc
+  - curl
+  - entr
+  - fd-find
+  - ffmpeg
+  - ffmpegthumbnailer
+  - file
+  - fzf
+  - git
+  - graphviz
+  - imagemagick
+  - jq
+  - libpoppler-dev
+  - lsd
+  - lrzsz
+  - procps
+  - ripgrep
+  - stow
+  - tmux
+  - unar
+  - xclip
+  - wrk
+  - zoxide
+  - zssh
+
+system_ohmyzsh_plugins:
+  - git
+  - vi-mode
+
+system_nerd_fonts:
+  # version: "HEAD"
+  version: "v3.3.0"
+  fonts:
+    - Agave
+    - AnonymousPro
+    - Arimo
+    - AurulentSansMono
+    - BitstreamVeraSansMono
+    - CascadiaCode
+    - CodeNewRoman
+    - ComicShannsMono
+    - Cousine
+    - DaddyTimeMono
+    - DejaVuSansMono
+    - DroidSansMono
+    - EnvyCodeR
+    - FantasqueSansMono
+    - FiraCode
+    - FiraMono
+    - Go-Mono
+    - Hack
+    - Hasklig
+    - Hermit
+    - IBMPlexMono
+    - Inconsolata
+    - InconsolataGo
+    - InconsolataLGC
+    - Iosevka
+    - IosevkaTerm
+    - JetBrainsMono
+    - Lekton
+    - LiberationMono
+    - Lilex
+    - Meslo
+    - Monofur
+    - Monoid
+    - Mononoki
+    - MPlus
+    - Noto
+    - OpenDyslexic
+    - Overpass
+    - ProFont
+    - RobotoMono
+    - ShareTechMono
+    - SourceCodePro
+    - SpaceMono
+    - NerdFontsSymbolsOnly
+    - Terminus
+    - Tinos
+    - Ubuntu
+    - UbuntuMono
+    - VictorMono
+    - iA-Writer
