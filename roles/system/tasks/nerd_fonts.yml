@@ -58,12 +58,12 @@
 
 - name: Check Nerd Fonts version marker
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.nerd-fonts"
+    path: "{{ ansible_facts['env']['HOME'] }}/.nerd-fonts"
   register: system_nerd_fonts_marker
 
 - name: Read installed Nerd Fonts version
   ansible.builtin.slurp:
-    src: "{{ ansible_env.HOME }}/.nerd-fonts"
+    src: "{{ ansible_facts['env']['HOME'] }}/.nerd-fonts"
   register: system_nerd_fonts_installed
   when: system_nerd_fonts_marker.stat.exists
 
@@ -96,5 +96,5 @@
     - name: Record installed Nerd Fonts version
       ansible.builtin.copy:
         content: "{{ system_nerd_fonts.version }}"
-        dest: "{{ ansible_env.HOME }}/.nerd-fonts"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.nerd-fonts"
         mode: "0644"
