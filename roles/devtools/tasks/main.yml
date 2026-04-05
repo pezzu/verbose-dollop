@@ -13,3 +13,6 @@
 
 - name: Import nvm tasks
   ansible.builtin.import_tasks: nvm.yml
+
+- name: Import gh tasks
+  ansible.builtin.import_tasks: gh.yml

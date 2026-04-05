@@ -45,6 +45,13 @@ latest GitHub release tag and re-runs the script only when an upgrade is
 available. The install script writes the required sourcing block to `~/.zshrc`
 automatically.
 
+### GitHub CLI (gh)
+
+Installs [gh](https://cli.github.com) via Homebrew. Also installs the
+[gh-act](https://github.com/nektos/gh-act) extension, which enables running
+GitHub Actions locally via `gh act`. The extension is installed only when not
+already present (`gh extension list` is checked before installing).
+
 ## Role Variables
 
 | Variable | Default | Description |

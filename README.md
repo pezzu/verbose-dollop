@@ -37,9 +37,9 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
   - [x] [rustup](https://rustup.rs) — Rust toolchain installer
 - [x] [Docker CE](https://docs.docker.com/engine/install/debian/) (engine, buildx, compose plugin)
 - [x] [Podman](https://podman.io) (optional Docker-compatible bindings)
-- [ ] GitHub tooling
-  - [ ] [gh](https://cli.github.com) — GitHub CLI
-  - [ ] [act](https://github.com/nektos/act) — run GitHub Actions locally
+- [x] GitHub tooling
+  - [x] [gh](https://cli.github.com) — GitHub CLI
+  - [x] [gh-act](https://github.com/nektos/gh-act) — run GitHub Actions locally (gh extension)
 
 ### DevOps
 
