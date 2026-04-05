@@ -23,8 +23,7 @@ Plugins are configurable via `system_ohmyzsh_plugins` (defaults: `git`, `vi-mode
 
 ### Neovim
 
-Installs the latest [Neovim](https://neovim.io) AppImage to `~/.local/bin/nvim`. Automatically
-checks the GitHub latest release and upgrades if a newer version is available.
+Installs [Neovim](https://neovim.io) via Homebrew (`neovim` formula).
 
 ### Nerd Fonts
 

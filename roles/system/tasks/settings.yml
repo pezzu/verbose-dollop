@@ -8,9 +8,3 @@
         search_string: "XKBOPTIONS"
         line: "XKBOPTIONS=caps:swapescape"
         state: "present"
-
-- name: Ensure local bin directory exists
-  ansible.builtin.file:
-    path: "{{ system_local_bin }}"
-    state: directory
-    mode: "u=rwx,g=rx,o=rx"

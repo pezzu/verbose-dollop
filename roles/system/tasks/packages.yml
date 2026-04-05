@@ -9,6 +9,16 @@
       loop: "{{ system_packages }}"
       when: ansible_facts['os_family'] == 'Debian'
 
+    - name: Define a local bin path variable
+      set_fact:
+        system_local_bin: "{{ ansible_facts['env']['HOME'] }}/.local/bin"
+
+    - name: Ensure local bin directory exists
+      ansible.builtin.file:
+        path: "{{ system_local_bin }}"
+        state: directory
+        mode: "u=rwx,g=rx,o=rx"
+
     - name: Create compatibility link
       become: false
       ansible.builtin.file:

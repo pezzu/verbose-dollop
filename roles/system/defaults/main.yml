@@ -1,6 +1,4 @@
 ---
-system_local_bin: ~/.local/bin
-
 system_packages:
   - bat
   - build-essential
