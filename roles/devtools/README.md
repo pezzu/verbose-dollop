@@ -1,6 +1,6 @@
 # devtools
 
-Install container runtimes: Docker CE and Podman. Includes language toolchains: Rustup and Go.
+Install container runtimes: Docker CE and Podman. Includes language toolchains: Rustup, Go, and nvm.
 
 ## Components
 
@@ -36,6 +36,14 @@ in dotfiles to use `cargo`, `rustc`, and other Rust toolchain binaries.
 Installs [Go](https://go.dev) via Homebrew (`brew install go`), providing the
 latest stable Go toolchain. Add the Homebrew-managed Go binary directory to
 `$PATH` in dotfiles to use `go`, `gofmt`, and other Go toolchain binaries.
+
+### nvm
+
+Installs [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager) via the
+official install script. The task checks the installed version against the
+latest GitHub release tag and re-runs the script only when an upgrade is
+available. The install script writes the required sourcing block to `~/.zshrc`
+automatically.
 
 ## Role Variables
 

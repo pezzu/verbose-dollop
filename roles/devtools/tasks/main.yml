@@ -10,3 +10,6 @@
 
 - name: Import Go tasks
   ansible.builtin.import_tasks: go.yml
+
+- name: Import nvm tasks
+  ansible.builtin.import_tasks: nvm.yml

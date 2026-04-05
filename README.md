@@ -30,11 +30,10 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 
 Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/README.md).
 
-- [ ] Compilers / language runtimes
-  - [x] gleam
+- [x] Compilers / language runtimes
   - [x] python
   - [x] [Go](https://go.dev) — Go programming language toolchain
-  - [ ] nvm / Node.js
+  - [x] [nvm](https://github.com/nvm-sh/nvm) — Node.js version manager
   - [x] [rustup](https://rustup.rs) — Rust toolchain installer
 - [x] [Docker CE](https://docs.docker.com/engine/install/debian/) (engine, buildx, compose plugin)
 - [x] [Podman](https://podman.io) (optional Docker-compatible bindings)

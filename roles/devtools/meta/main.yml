@@ -4,7 +4,8 @@ galaxy_info:
   description: >
     Install container runtimes — Docker CE and Podman
     with optional Docker-compatible bindings. Includes rustup,
-    the Rust toolchain installer, and Go, the Go programming language toolchain.
+    the Rust toolchain installer, Go, the Go programming language toolchain,
+    and nvm, the Node.js version manager.
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
@@ -15,5 +16,7 @@ galaxy_info:
     - rustup
     - go
     - golang
+    - nvm
+    - nodejs
 
 dependencies: []

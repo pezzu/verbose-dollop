@@ -1,0 +1,46 @@
+---
+- name: Install nvm
+  vars:
+    devtools_nvm_install_script_path: /tmp/nvm_install.sh
+  block:
+    - name: Check current nvm version
+      ansible.builtin.shell: "source ~/.nvm/nvm.sh 2>/dev/null && nvm --version"
+      args:
+        executable: /bin/bash
+      register: devtools_nvm_version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest nvm release
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/nvm-sh/nvm/releases/latest
+      register: devtools_nvm_release
+
+    - name: Register versions
+      ansible.builtin.set_fact:
+        devtools_current_nvm: >-
+          {{ (devtools_nvm_version.rc | int == 0) | ternary(
+            devtools_nvm_version.stdout_lines[0],
+            ''
+          ) }}
+        devtools_latest_nvm: >-
+          {{ devtools_nvm_release.json.tag_name | regex_replace('^v', '') }}
+
+    - name: Install latest nvm
+      when: devtools_latest_nvm != devtools_current_nvm
+      block:
+        - name: Download nvm install script
+          ansible.builtin.get_url:
+            url: "https://raw.githubusercontent.com/nvm-sh/nvm/{{ devtools_nvm_release.json.tag_name }}/install.sh"
+            dest: "{{ devtools_nvm_install_script_path }}"
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Run nvm install script
+          ansible.builtin.command: "{{ devtools_nvm_install_script_path }}"
+          changed_when: true
+
+        - name: Clean up install script
+          ansible.builtin.file:
+            path: "{{ devtools_nvm_install_script_path }}"
+            state: absent
