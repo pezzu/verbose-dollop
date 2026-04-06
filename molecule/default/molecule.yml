@@ -9,12 +9,14 @@ driver:
 
 platforms:
   - name: instance
-    image: ubuntu:22.04
+    image: ubuntu:24.04
     dockerfile: Dockerfile.j2
     pre_build_image: false
 
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: "../../roles"
   connection_options:
     ansible_user: ansible
   playbooks:

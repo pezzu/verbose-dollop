@@ -1,6 +1,0 @@
----
-- name: Prepare
-  hosts: all
-  tasks:
-    - name: Install Homebrew
-      ansible.builtin.import_tasks: ../../roles/system/tasks/brew.yml

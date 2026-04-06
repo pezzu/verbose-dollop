@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  tasks:
-    - name: Import Go tasks
-      ansible.builtin.import_tasks: ../../roles/devtools/tasks/go.yml
+  roles:
+    - system
+    - devtools
+    - devops
