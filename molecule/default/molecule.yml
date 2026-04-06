@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: molecule/requirements.yml
+
+driver:
+  name: docker
+
+platforms:
+  - name: instance
+    image: ubuntu:22.04
+    dockerfile: Dockerfile.j2
+    pre_build_image: false
+
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_user: ansible
+
+verifier:
+  name: ansible

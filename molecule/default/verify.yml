@@ -1,0 +1,13 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check that go is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/go version
+      register: go_version
+      changed_when: false
+
+    - name: Assert go is installed
+      ansible.builtin.assert:
+        that: go_version.rc == 0
+        fail_msg: "go is not installed"
