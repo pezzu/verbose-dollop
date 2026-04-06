@@ -17,6 +17,9 @@ provisioner:
   name: ansible
   connection_options:
     ansible_user: ansible
+  playbooks:
+    create: create.yml
+    destroy: destroy.yml
 
 verifier:
   name: ansible
