@@ -48,16 +48,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Running installation
-        run: ./install.sh
+      - name: Install Molecule tooling
+        run: python3 -m pip install --user ansible molecule "molecule-plugins[docker]"
 
-      - name: Test for idempotence
-        run: |
-          trace_file=$(mktemp)
-          ./install.sh | tee -a "${trace_file}"
-          if tail "${trace_file}" | grep -q 'changed=0.*failed=0'; then
-            echo 'Idempotence test: pass'
-          else
-            echo 'Idempotence test: fail'
-            exit 1
-          fi
+      - name: Add local Python bin to PATH
+        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run Molecule tests
+        run: molecule test
