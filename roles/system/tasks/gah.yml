@@ -5,7 +5,7 @@
     system_gah_install_script_path: /tmp/gah_install.sh
   block:
     - name: Check current GAH version
-      ansible.builtin.command: gah version
+      ansible.builtin.command: "{{ ansible_facts['env']['HOME'] }}/.local/bin/gah version"
       register: system_gah_version
       changed_when: false
       failed_when: false
