@@ -94,6 +94,12 @@ python3 -m venv venv/
 source venv/bin/activate
 ```
 
+Install dependencies:
+
+```sh
+python3 -m pip install --user ansible molecule "molecule-plugins[docker]"
+```
+
 Run full testing cycle:
 
 ```sh
