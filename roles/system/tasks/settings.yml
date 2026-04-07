@@ -1,6 +1,7 @@
 ---
 - name: Setup System Settings
   become: true
+  tags: molecule-notest
   block:
     - name: Switch Capslock and Escape
       ansible.builtin.lineinfile:

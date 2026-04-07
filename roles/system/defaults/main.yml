@@ -22,6 +22,7 @@ system_packages:
   - stow
   - tmux
   - unar
+  - unzip
   - xclip
   - wrk
   - zoxide
