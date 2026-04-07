@@ -62,3 +62,40 @@ Infrastructure, cloud, and Kubernetes tooling. See [`roles/devops`](roles/devops
   - [x] [hey](https://github.com/rakyll/hey) — HTTP load generator
   - [x] [dive](https://github.com/wagoodman/dive) — Docker image inspector
   - [x] [mintoolkit](https://github.com/mintoolkit/mint) — container image minifier
+
+## Development
+
+### Linting
+
+CI pipeline uses [super-linter](https://github.com/super-linter/super-linter) for linting. To run it locally use:
+
+```sh
+docker run \
+  -e RUN_LOCAL=true \
+  -e VALIDATE_ALL_CODEBASE=true \
+  -e DEFAULT_BRANCH=main \
+  -e VALIDATE_ANSIBLE=true \
+  -e ANSIBLE_DIRECTORY=. \
+  -e VALIDATE_BASH=true \
+  -e VALIDATE_GITHUB_ACTIONS=true \
+  -e VALIDATE_GITHUB_ACTIONS_ZIZMOR=true \
+  -e VALIDATE_YAML=true \
+  -e YAML_CONFIG_FILE=.yaml-lint.yml \
+  -v $(pwd):/tmp/lint ghcr.io/super-linter/super-linter:latest
+```
+
+### Ansible / Molecule
+
+One way to setup ansible and molecule is to use python virtual environment:
+
+```sh
+python3 -m venv venv/
+
+source venv/bin/activate
+```
+
+Run full testing cycle:
+
+```sh
+molecule test
+```
