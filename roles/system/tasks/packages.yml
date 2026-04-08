@@ -32,8 +32,8 @@
         state: link
         force: false
       loop:
-        - src: "{{ lookup('pipe', 'which fdfind') }}"
+        - src: "/usr/bin/fdfind"
           dest: "{{ system_local_bin }}/fd"
-        - src: "{{ lookup('pipe', 'which batcat') }}"
+        - src: "/usr/bin/batcat"
           dest: "{{ system_local_bin }}/bat"
       ignore_errors: false
