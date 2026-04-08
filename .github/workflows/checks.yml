@@ -35,7 +35,6 @@ jobs:
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: true
           VALIDATE_YAML: true
-          YAML_CONFIG_FILE: .yamllint.yml
 
   integration:
     name: Integration
