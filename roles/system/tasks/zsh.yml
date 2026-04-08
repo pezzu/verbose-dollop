@@ -16,7 +16,7 @@
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
         dest: /tmp/ohmyzsh-install.sh
-        mode: 0775
+        mode: "0775"
       when: not system_ohmyzsh_dir.stat.exists
 
     - name: Run install script
