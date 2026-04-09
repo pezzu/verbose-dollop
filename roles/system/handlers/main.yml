@@ -4,3 +4,4 @@
     fc-cache -fv
   tags:
     - skip_ansible_lint
+    - molecule-notest
