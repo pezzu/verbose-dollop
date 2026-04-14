@@ -7,7 +7,8 @@ galaxy_info:
     the Rust toolchain installer, Go, the Go programming language toolchain,
     nvm, the Node.js version manager, gh, the GitHub CLI with the
     gh-act extension for running GitHub Actions locally, and opencode,
-    an AI coding agent for the terminal.
+    an AI coding agent for the terminal, and uv,
+    an extremely fast Python package and project manager.
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
@@ -25,5 +26,7 @@ galaxy_info:
     - act
     - opencode
     - ai
+    - uv
+    - python
 
 dependencies: []
