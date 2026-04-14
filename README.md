@@ -35,6 +35,7 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
   - [x] [Go](https://go.dev) — Go programming language toolchain
   - [x] [nvm](https://github.com/nvm-sh/nvm) — Node.js version manager
   - [x] [rustup](https://rustup.rs) — Rust toolchain installer
+  - [x] [uv](https://docs.astral.sh/uv/) — Python package and project manager
 - [x] [Docker CE](https://docs.docker.com/engine/install/debian/) (engine, buildx, compose plugin)
 - [x] [Podman](https://podman.io) (optional Docker-compatible bindings)
 - [x] [gh cli](https://cli.github.com) — GitHub CLI

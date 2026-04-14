@@ -54,6 +54,12 @@ Installs [gh](https://cli.github.com) via Homebrew.
 Installs [OpenCode](https://opencode.ai) via Homebrew (`brew install opencode`).
 OpenCode is an AI coding agent built for the terminal.
 
+### uv
+
+Installs [uv](https://docs.astral.sh/uv/) via Homebrew (`brew install uv`).
+uv is an extremely fast Python package and project manager, written in Rust.
+It provides both the `uv` and `uvx` binaries.
+
 ## Role Variables
 
 | Variable | Default | Description |
