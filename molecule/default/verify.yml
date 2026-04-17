@@ -310,6 +310,30 @@
         fail_msg: "opencode is not installed"
 
     # -------------------------------------------------------------------------
+    # devtools role — uv
+    # -------------------------------------------------------------------------
+
+    - name: Check that uv is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/uv --version
+      register: uv_version
+      changed_when: false
+
+    - name: Assert uv is installed
+      ansible.builtin.assert:
+        that: uv_version.rc == 0
+        fail_msg: "uv is not installed"
+
+    - name: Check that uvx is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/uvx --version
+      register: uvx_version
+      changed_when: false
+
+    - name: Assert uvx is installed
+      ansible.builtin.assert:
+        that: uvx_version.rc == 0
+        fail_msg: "uvx is not installed"
+
+    # -------------------------------------------------------------------------
     # devops role — Kubernetes tooling
     # -------------------------------------------------------------------------
 
