@@ -87,20 +87,14 @@ docker run \
   -e VALIDATE_ANSIBLE=true \
   -e ANSIBLE_DIRECTORY=. \
   -e VALIDATE_BASH=true \
+  -e VALIDATE_CHECKOV=true \
+  -e CHECKOV_FILE_NAME=.checkov.yml \
   -e VALIDATE_GITHUB_ACTIONS=true \
   -e VALIDATE_GITHUB_ACTIONS_ZIZMOR=true \
   -e VALIDATE_YAML=true \
   -e YAML_CONFIG_FILE=.yaml-lint.yml \
   -v $(pwd):/tmp/lint \
   ghcr.io/super-linter/super-linter:latest
-```
-
-Fix any reported issues and re-run to confirm clean output.
-
-### Step 10 - Run molecule test and fix
-
-```bash
-molecule test
 ```
 
 Fix any reported issues and re-run to confirm clean output.

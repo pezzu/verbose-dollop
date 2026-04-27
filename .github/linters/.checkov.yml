@@ -1,0 +1,9 @@
+---
+skip-path:
+  - .ansible
+  - venv
+
+skip-check:
+  - CKV_DOCKER_2    # Molecule test container does not need a healthcheck
+  - CKV2_DOCKER_1   # sudo required for Ansible privilege escalation testing
+  - CKV2_ANSIBLE_3  # blocks intentionally omit rescue; failures propagate naturally

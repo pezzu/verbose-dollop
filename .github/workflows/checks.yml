@@ -10,6 +10,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Lint
@@ -32,6 +35,8 @@ jobs:
           VALIDATE_ANSIBLE: true
           ANSIBLE_DIRECTORY: .
           VALIDATE_BASH: true
+          VALIDATE_CHECKOV: true
+          CHECKOV_FILE_NAME: .checkov.yml
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: true
           VALIDATE_YAML: true
