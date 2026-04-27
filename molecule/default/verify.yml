@@ -2,7 +2,8 @@
 - name: Verify
   hosts: all
   vars:
-    target_path: "{{ ansible_facts['env']['HOME'] }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}" # noqa yaml[line-length]
+    # yamllint disable-line rule:line-length
+    target_path: "{{ ansible_facts['env']['HOME'] }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
 
   tasks:
     # -------------------------------------------------------------------------
