@@ -1,4 +1,11 @@
 ---
+- name: Add janosmiko Homebrew tap
+  community.general.homebrew_tap:
+    name: janosmiko/tap
+    state: present
+    path: >-
+      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
+
 - name: Install Kubernetes packages
   community.general.homebrew:
     name: "{{ item }}"
@@ -8,3 +15,6 @@
     - kubectl
     - minikube
     - helm
+    - kubectx
+    - k9s
+    - janosmiko/tap/lfk

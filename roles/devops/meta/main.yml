@@ -2,7 +2,7 @@
 galaxy_info:
   author: Peter Sukhenko
   description: >
-    Install DevOps tool belt: Kubernetes (kubectl, minikube, helm),
+    Install DevOps tool belt: Kubernetes (kubectl, minikube, helm, kubectx, k9s, lfk),
     HashiCorp stack (tfenv, consul, nomad, packer, vagrant),
     cloud CLIs (AWS, Azure, OCI), and auxiliary tools (hey, dive, mintoolkit).
   license: MIT
@@ -13,5 +13,7 @@ galaxy_info:
     - hashicorp
     - terraform
     - cloud
+    - k9s
+    - kubectx
 
 dependencies: []

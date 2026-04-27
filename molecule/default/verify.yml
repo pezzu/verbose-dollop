@@ -374,6 +374,56 @@
         that: helm_version.rc == 0
         fail_msg: "helm is not installed"
 
+    - name: Check that kubectx is installed
+      ansible.builtin.command: kubectx --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: kubectx_version
+      changed_when: false
+      failed_when: false
+
+    - name: Assert kubectx is installed
+      ansible.builtin.assert:
+        that: kubectx_version.rc == 0
+        fail_msg: "kubectx is not installed"
+
+    - name: Check that kubens is installed
+      ansible.builtin.command: kubens --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: kubens_version
+      changed_when: false
+      failed_when: false
+
+    - name: Assert kubens is installed
+      ansible.builtin.assert:
+        that: kubens_version.rc == 0
+        fail_msg: "kubens is not installed"
+
+    - name: Check that k9s is installed
+      ansible.builtin.command: k9s version
+      environment:
+        PATH: "{{ target_path }}"
+      register: k9s_version
+      changed_when: false
+
+    - name: Assert k9s is installed
+      ansible.builtin.assert:
+        that: k9s_version.rc == 0
+        fail_msg: "k9s is not installed"
+
+    - name: Check that lfk is installed
+      ansible.builtin.command: lfk --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: lfk_version
+      changed_when: false
+
+    - name: Assert lfk is installed
+      ansible.builtin.assert:
+        that: lfk_version.rc == 0
+        fail_msg: "lfk is not installed"
+
     # -------------------------------------------------------------------------
     # devops role — HashiCorp tooling
     # -------------------------------------------------------------------------
