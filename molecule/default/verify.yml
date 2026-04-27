@@ -1,9 +1,259 @@
 ---
 - name: Verify
   hosts: all
+  vars:
+    # yamllint disable-line rule:line-length
+    target_path: "{{ ansible_facts['env']['HOME'] }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
+
   tasks:
+    # -------------------------------------------------------------------------
+    # system role — apt packages
+    # -------------------------------------------------------------------------
+
+    - name: Check that git is installed
+      ansible.builtin.command: git --version # noqa command-instead-of-module
+      register: git_version
+      changed_when: false
+
+    - name: Assert git is installed
+      ansible.builtin.assert:
+        that: git_version.rc == 0
+        fail_msg: "git is not installed"
+
+    - name: Check that curl is installed
+      ansible.builtin.command: curl --version # noqa command-instead-of-module
+      register: curl_version
+      changed_when: false
+
+    - name: Assert curl is installed
+      ansible.builtin.assert:
+        that: curl_version.rc == 0
+        fail_msg: "curl is not installed"
+
+    - name: Check that jq is installed
+      ansible.builtin.command: jq --version
+      register: jq_version
+      changed_when: false
+
+    - name: Assert jq is installed
+      ansible.builtin.assert:
+        that: jq_version.rc == 0
+        fail_msg: "jq is not installed"
+
+    - name: Check that fzf is installed
+      ansible.builtin.command: fzf --version
+      register: fzf_version
+      changed_when: false
+
+    - name: Assert fzf is installed
+      ansible.builtin.assert:
+        that: fzf_version.rc == 0
+        fail_msg: "fzf is not installed"
+
+    - name: Check that ripgrep is installed
+      ansible.builtin.command: rg --version
+      register: rg_version
+      changed_when: false
+
+    - name: Assert ripgrep is installed
+      ansible.builtin.assert:
+        that: rg_version.rc == 0
+        fail_msg: "ripgrep is not installed"
+
+    - name: Check that tmux is installed
+      ansible.builtin.command: tmux -V
+      register: tmux_version
+      changed_when: false
+
+    - name: Assert tmux is installed
+      ansible.builtin.assert:
+        that: tmux_version.rc == 0
+        fail_msg: "tmux is not installed"
+
+    - name: Check that stow is installed
+      ansible.builtin.command: stow --version
+      register: stow_version
+      changed_when: false
+
+    - name: Assert stow is installed
+      ansible.builtin.assert:
+        that: stow_version.rc == 0
+        fail_msg: "stow is not installed"
+
+    - name: Check that zoxide is installed
+      ansible.builtin.command: zoxide --version
+      register: zoxide_version
+      changed_when: false
+
+    - name: Assert zoxide is installed
+      ansible.builtin.assert:
+        that: zoxide_version.rc == 0
+        fail_msg: "zoxide is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — fd and bat compatibility symlinks
+    # -------------------------------------------------------------------------
+
+    - name: Check that fd symlink exists
+      ansible.builtin.stat:
+        path: "~/.local/bin/fd"
+      register: fd_symlink
+
+    - name: Assert fd symlink is present
+      ansible.builtin.assert:
+        that: fd_symlink.stat.islnk
+        fail_msg: "fd symlink at ~/.local/bin/fd is not present"
+
+    - name: Check that bat symlink exists
+      ansible.builtin.stat:
+        path: "~/.local/bin/bat"
+      register: bat_symlink
+
+    - name: Assert bat symlink is present
+      ansible.builtin.assert:
+        that: bat_symlink.stat.islnk
+        fail_msg: "bat symlink at ~/.local/bin/bat is not present"
+
+    # -------------------------------------------------------------------------
+    # system role — Homebrew
+    # -------------------------------------------------------------------------
+
+    - name: Check that brew is installed
+      ansible.builtin.command: brew --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: brew_version
+      changed_when: false
+
+    - name: Assert brew is installed
+      ansible.builtin.assert:
+        that: brew_version.rc == 0
+        fail_msg: "brew is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — gah
+    # -------------------------------------------------------------------------
+
+    - name: Check that gah is installed
+      ansible.builtin.command: gah version
+      environment:
+        PATH: "{{ target_path }}"
+      register: gah_version
+      changed_when: false
+
+    - name: Assert gah is installed
+      ansible.builtin.assert:
+        that: gah_version.rc == 0
+        fail_msg: "gah is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — neovim
+    # -------------------------------------------------------------------------
+
+    - name: Check that nvim is installed
+      ansible.builtin.command: nvim --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: nvim_version
+      changed_when: false
+
+    - name: Assert nvim is installed
+      ansible.builtin.assert:
+        that: nvim_version.rc == 0
+        fail_msg: "nvim is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — yazi
+    # -------------------------------------------------------------------------
+
+    - name: Check that yazi is installed
+      ansible.builtin.command: yazi --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: yazi_version
+      changed_when: false
+
+    - name: Assert yazi is installed
+      ansible.builtin.assert:
+        that: yazi_version.rc == 0
+        fail_msg: "yazi is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — Oh My Zsh
+    # -------------------------------------------------------------------------
+
+    - name: Check that Oh My Zsh directory exists
+      ansible.builtin.stat:
+        path: "~/.oh-my-zsh"
+      register: ohmyzsh_dir
+
+    - name: Assert Oh My Zsh is installed
+      ansible.builtin.assert:
+        that: ohmyzsh_dir.stat.isdir
+        fail_msg: "Oh My Zsh directory ~/.oh-my-zsh is not present"
+
+    - name: Check that zshrc plugins line is configured
+      ansible.builtin.command: grep "plugins=" ~/.zshrc
+      register: zshrc_plugins
+      changed_when: false
+
+    - name: Assert zshrc plugins are configured
+      ansible.builtin.assert:
+        that: zshrc_plugins.rc == 0
+        fail_msg: "plugins= line not found in ~/.zshrc"
+
+    # -------------------------------------------------------------------------
+    # devtools role — Docker
+    # -------------------------------------------------------------------------
+
+    - name: Check that docker CLI is installed
+      ansible.builtin.command: docker --version
+      register: docker_version
+      changed_when: false
+
+    - name: Assert docker CLI is installed
+      ansible.builtin.assert:
+        that: docker_version.rc == 0
+        fail_msg: "docker is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — Podman
+    # -------------------------------------------------------------------------
+
+    - name: Check that podman is installed
+      ansible.builtin.command: podman --version
+      register: podman_version
+      changed_when: false
+
+    - name: Assert podman is installed
+      ansible.builtin.assert:
+        that: podman_version.rc == 0
+        fail_msg: "podman is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — rustup
+    # -------------------------------------------------------------------------
+
+    - name: Check that rustup is installed
+      ansible.builtin.command: rustup --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: rustup_version
+      changed_when: false
+
+    - name: Assert rustup is installed
+      ansible.builtin.assert:
+        that: rustup_version.rc == 0
+        fail_msg: "rustup is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — Go
+    # -------------------------------------------------------------------------
+
     - name: Check that go is installed
-      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/go version
+      ansible.builtin.command: go version
+      environment:
+        PATH: "{{ target_path }}"
       register: go_version
       changed_when: false
 
@@ -11,3 +261,249 @@
       ansible.builtin.assert:
         that: go_version.rc == 0
         fail_msg: "go is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — nvm
+    # -------------------------------------------------------------------------
+
+    - name: Check that nvm is installed
+      ansible.builtin.shell: "source ~/.nvm/nvm.sh && nvm --version"
+      args:
+        executable: /bin/bash
+      register: nvm_version
+      changed_when: false
+
+    - name: Assert nvm is installed
+      ansible.builtin.assert:
+        that: nvm_version.rc == 0
+        fail_msg: "nvm is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — gh
+    # -------------------------------------------------------------------------
+
+    - name: Check that gh is installed
+      ansible.builtin.command: gh --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: gh_version
+      changed_when: false
+
+    - name: Assert gh is installed
+      ansible.builtin.assert:
+        that: gh_version.rc == 0
+        fail_msg: "gh is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — opencode
+    # -------------------------------------------------------------------------
+
+    - name: Check that opencode is installed
+      ansible.builtin.command: opencode --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: opencode_version
+      changed_when: false
+
+    - name: Assert opencode is installed
+      ansible.builtin.assert:
+        that: opencode_version.rc == 0
+        fail_msg: "opencode is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — uv
+    # -------------------------------------------------------------------------
+
+    - name: Check that uv is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/uv --version
+      register: uv_version
+      changed_when: false
+
+    - name: Assert uv is installed
+      ansible.builtin.assert:
+        that: uv_version.rc == 0
+        fail_msg: "uv is not installed"
+
+    - name: Check that uvx is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/uvx --version
+      register: uvx_version
+      changed_when: false
+
+    - name: Assert uvx is installed
+      ansible.builtin.assert:
+        that: uvx_version.rc == 0
+        fail_msg: "uvx is not installed"
+
+    # -------------------------------------------------------------------------
+    # devops role — Kubernetes tooling
+    # -------------------------------------------------------------------------
+
+    - name: Check that kubectl is installed
+      ansible.builtin.command: kubectl version --client
+      environment:
+        PATH: "{{ target_path }}"
+      register: kubectl_version
+      changed_when: false
+
+    - name: Assert kubectl is installed
+      ansible.builtin.assert:
+        that: kubectl_version.rc == 0
+        fail_msg: "kubectl is not installed"
+
+    - name: Check that minikube is installed
+      ansible.builtin.command: minikube version
+      environment:
+        PATH: "{{ target_path }}"
+      register: minikube_version
+      changed_when: false
+
+    - name: Assert minikube is installed
+      ansible.builtin.assert:
+        that: minikube_version.rc == 0
+        fail_msg: "minikube is not installed"
+
+    - name: Check that helm is installed
+      ansible.builtin.command: helm version
+      environment:
+        PATH: "{{ target_path }}"
+      register: helm_version
+      changed_when: false
+
+    - name: Assert helm is installed
+      ansible.builtin.assert:
+        that: helm_version.rc == 0
+        fail_msg: "helm is not installed"
+
+    # -------------------------------------------------------------------------
+    # devops role — HashiCorp tooling
+    # -------------------------------------------------------------------------
+
+    - name: Check that tfenv is installed
+      ansible.builtin.command: tfenv --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: tfenv_version
+      changed_when: false
+
+    - name: Assert tfenv is installed
+      ansible.builtin.assert:
+        that: tfenv_version.rc == 0
+        fail_msg: "tfenv is not installed"
+
+    - name: Check that consul is installed
+      ansible.builtin.command: consul --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: consul_version
+      changed_when: false
+
+    - name: Assert consul is installed
+      ansible.builtin.assert:
+        that: consul_version.rc == 0
+        fail_msg: "consul is not installed"
+
+    - name: Check that nomad is installed
+      ansible.builtin.command: nomad --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: nomad_version
+      changed_when: false
+
+    - name: Assert nomad is installed
+      ansible.builtin.assert:
+        that: nomad_version.rc == 0
+        fail_msg: "nomad is not installed"
+
+    - name: Check that packer is installed
+      ansible.builtin.command: packer --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: packer_version
+      changed_when: false
+
+    - name: Assert packer is installed
+      ansible.builtin.assert:
+        that: packer_version.rc == 0
+        fail_msg: "packer is not installed"
+
+    - name: Check that vagrant is installed
+      ansible.builtin.command: vagrant --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: vagrant_version
+      changed_when: false
+      when: ansible_virtualization_type != "docker"
+
+    - name: Assert vagrant is installed
+      ansible.builtin.assert:
+        that: vagrant_version.rc == 0
+        fail_msg: "vagrant is not installed"
+      when: ansible_virtualization_type != "docker"
+
+    # -------------------------------------------------------------------------
+    # devops role — cloud CLIs
+    # -------------------------------------------------------------------------
+
+    - name: Check that aws CLI is installed
+      ansible.builtin.command: aws --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: aws_version
+      changed_when: false
+
+    - name: Assert aws CLI is installed
+      ansible.builtin.assert:
+        that: aws_version.rc == 0
+        fail_msg: "aws CLI is not installed"
+
+    - name: Check that az CLI is installed
+      ansible.builtin.command: az --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: az_version
+      changed_when: false
+
+    - name: Assert az CLI is installed
+      ansible.builtin.assert:
+        that: az_version.rc == 0
+        fail_msg: "az CLI is not installed"
+
+    - name: Check that oci CLI is installed
+      ansible.builtin.command: oci --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: oci_version
+      changed_when: false
+
+    - name: Assert oci CLI is installed
+      ansible.builtin.assert:
+        that: oci_version.rc == 0
+        fail_msg: "oci CLI is not installed"
+
+    # -------------------------------------------------------------------------
+    # devops role — additional tools
+    # -------------------------------------------------------------------------
+
+    - name: Check that dive is installed
+      ansible.builtin.command: dive --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: dive_version
+      changed_when: false
+
+    - name: Assert dive is installed
+      ansible.builtin.assert:
+        that: dive_version.rc == 0
+        fail_msg: "dive is not installed"
+
+    - name: Check that docker-slim is installed
+      ansible.builtin.command: docker-slim --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: docker_slim_version
+      changed_when: false
+
+    - name: Assert docker-slim is installed
+      ansible.builtin.assert:
+        that: docker_slim_version.rc == 0
+        fail_msg: "docker-slim is not installed"

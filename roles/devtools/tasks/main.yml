@@ -19,3 +19,6 @@
 
 - name: Import OpenCode tasks
   ansible.builtin.import_tasks: opencode.yml
+
+- name: Import uv tasks
+  ansible.builtin.import_tasks: uv.yml

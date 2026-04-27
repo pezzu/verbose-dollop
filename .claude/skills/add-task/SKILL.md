@@ -54,7 +54,13 @@ Create `roles/<role>/tasks/<tool>.yml` using the appropriate pattern from
 Add an `import_tasks` entry to `roles/<role>/tasks/main.yml` matching that
 role's existing import style (see REFERENCE.md → tasks/main.yml entry).
 
-### Step 6 — Update role meta and README
+### Step 6 - Update molecule tests
+
+Add an assert step(s) to `molecule/default/verify.yml` to verify that installation
+went successfully. E.g. for binary installations check if installed binary can be run 
+using appropriate --version switch.
+
+### Step 7 — Update role meta and README
 
 **`roles/<role>/meta/main.yml`**
 - Extend `description` to mention the new tool
@@ -65,13 +71,13 @@ role's existing import style (see REFERENCE.md → tasks/main.yml entry).
 - If new variables were added to `defaults/main.yml`, add rows to the Role
   Variables table
 
-### Step 7 — Update main README
+### Step 8 — Update main README
 
 Add the tool to the appropriate role section in the top-level `README.md`.
 Use `- [x]` for implemented items, `- [ ]` for planned ones.
 See REFERENCE.md → Main README for existing section shapes.
 
-### Step 8 — Run linter and fix
+### Step 9 — Run linter and fix
 
 ```bash
 docker run \
