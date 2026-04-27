@@ -1,4 +1,1 @@
 ---
-exclude_paths:
-  - molecule/default/create.yml
-  - molecule/default/destroy.yml
