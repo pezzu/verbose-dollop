@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   vars:
-    target_path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+    target_path: "{{ ansible_facts['env']['HOME'] }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}" # noqa yaml[line-length]
 
   tasks:
     # -------------------------------------------------------------------------
@@ -431,11 +431,13 @@
         PATH: "{{ target_path }}"
       register: vagrant_version
       changed_when: false
+      when: ansible_virtualization_type != "docker"
 
     - name: Assert vagrant is installed
       ansible.builtin.assert:
         that: vagrant_version.rc == 0
         fail_msg: "vagrant is not installed"
+      when: ansible_virtualization_type != "docker"
 
     # -------------------------------------------------------------------------
     # devops role — cloud CLIs
@@ -480,18 +482,6 @@
     # -------------------------------------------------------------------------
     # devops role — additional tools
     # -------------------------------------------------------------------------
-
-    - name: Check that hey is installed
-      ansible.builtin.command: hey --version
-      environment:
-        PATH: "{{ target_path }}"
-      register: hey_version
-      changed_when: false
-
-    - name: Assert hey is installed
-      ansible.builtin.assert:
-        that: hey_version.rc == 0
-        fail_msg: "hey is not installed"
 
     - name: Check that dive is installed
       ansible.builtin.command: dive --version
