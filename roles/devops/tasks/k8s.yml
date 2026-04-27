@@ -8,13 +8,12 @@
 
 - name: Install Kubernetes packages
   community.general.homebrew:
-    name: "{{ item }}"
+    name:
+      - kubectl
+      - minikube
+      - helm
+      - kubectx
+      - k9s
+      - janosmiko/tap/lfk
     state: present
     path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
-  loop:
-    - kubectl
-    - minikube
-    - helm
-    - kubectx
-    - k9s
-    - janosmiko/tap/lfk
