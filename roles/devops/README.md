@@ -12,6 +12,9 @@ All packages are installed via [Homebrew](https://brew.sh).
 | [kubectl](https://kubernetes.io/docs/reference/kubectl/) | Kubernetes CLI |
 | [minikube](https://minikube.sigs.k8s.io) | Local Kubernetes cluster |
 | [helm](https://helm.sh) | Kubernetes package manager |
+| [kubectx](https://github.com/ahmetb/kubectx) | Switch between Kubernetes contexts and namespaces |
+| [k9s](https://k9scli.io) | Terminal UI for Kubernetes clusters |
+| [lfk](https://github.com/janosmiko/lfk) | Lightning Fast Kubernetes navigator |
 
 ### HashiCorp
 

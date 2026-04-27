@@ -49,6 +49,9 @@ Infrastructure, cloud, and Kubernetes tooling. See [`roles/devops`](roles/devops
   - [x] [kubectl](https://kubernetes.io/docs/reference/kubectl/)
   - [x] [minikube](https://minikube.sigs.k8s.io)
   - [x] [helm](https://helm.sh)
+  - [x] [kubectx](https://github.com/ahmetb/kubectx) — switch between Kubernetes contexts and namespaces
+  - [x] [k9s](https://k9scli.io) — terminal UI for Kubernetes clusters
+  - [x] [lfk](https://github.com/janosmiko/lfk) — Lightning Fast Kubernetes navigator
 - [x] HashiCorp
   - [x] [tfenv](https://github.com/tfutils/tfenv) (Terraform version manager)
   - [x] [consul](https://www.consul.io)

@@ -40,6 +40,7 @@ jobs:
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: true
           VALIDATE_YAML: true
+          YAML_CONFIG_FILE: .yaml-lint.yml
 
   integration:
     name: Integration
@@ -52,11 +53,19 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install Molecule tooling
-        run: python3 -m pip install --user ansible molecule "molecule-plugins[docker]"
+      - name: Running installation
+        run: ./install.sh
 
-      - name: Add local Python bin to PATH
-        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Verify installation
+        run: ./verify.sh
 
-      - name: Run Molecule tests
-        run: molecule test
+      - name: Test for idempotence
+        run: |
+          trace_file=$(mktemp)
+          ./install.sh | tee -a "${trace_file}"
+          if tail "${trace_file}" | grep -q 'changed=0.*failed=0'; then
+            echo 'Idempotence test: pass'
+          else
+            echo 'Idempotence test: fail'
+            exit 1
+          fi

@@ -7,12 +7,11 @@
 
 - name: Install Hashicorp tools
   community.general.homebrew:
-    name: "{{ item }}"
+    name:
+      - hashicorp/tap/consul
+      - hashicorp/tap/nomad
+      - hashicorp/tap/packer
+      - hashicorp/tap/vagrant
+      - tfenv
     state: present
     path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
-  loop:
-    - hashicorp/tap/consul
-    - hashicorp/tap/nomad
-    - hashicorp/tap/packer
-    - hashicorp/tap/vagrant
-    - tfenv
