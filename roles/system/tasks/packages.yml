@@ -5,6 +5,7 @@
       become: true
       ansible.builtin.apt:
         update_cache: true
+      changed_when: false
       when: ansible_facts['os_family'] == 'Debian'
 
     - name: Apt packages
