@@ -6,8 +6,8 @@ galaxy_info:
     with optional Docker-compatible bindings. Includes rustup,
     the Rust toolchain installer, Go, the Go programming language toolchain,
     nvm, the Node.js version manager, gh, the GitHub CLI with the
-    gh-act extension for running GitHub Actions locally, and opencode,
-    an AI coding agent for the terminal, and uv,
+    gh-act extension for running GitHub Actions locally, opencode and pi,
+    AI coding agents for the terminal, and uv,
     an extremely fast Python package and project manager.
   license: MIT
   min_ansible_version: "2.9"
@@ -25,6 +25,7 @@ galaxy_info:
     - github
     - act
     - opencode
+    - pi
     - ai
     - uv
     - python

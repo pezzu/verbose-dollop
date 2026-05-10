@@ -311,6 +311,22 @@
         fail_msg: "opencode is not installed"
 
     # -------------------------------------------------------------------------
+    # devtools role — pi
+    # -------------------------------------------------------------------------
+
+    - name: Check that pi is installed
+      ansible.builtin.command: pi --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: pi_version
+      changed_when: false
+
+    - name: Assert pi is installed
+      ansible.builtin.assert:
+        that: pi_version.rc == 0
+        fail_msg: "pi is not installed"
+
+    # -------------------------------------------------------------------------
     # devtools role — uv
     # -------------------------------------------------------------------------
 

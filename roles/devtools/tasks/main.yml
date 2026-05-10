@@ -20,5 +20,8 @@
 - name: Import OpenCode tasks
   ansible.builtin.import_tasks: opencode.yml
 
+- name: Import Pi Coding Agent tasks
+  ansible.builtin.import_tasks: pi.yml
+
 - name: Import uv tasks
   ansible.builtin.import_tasks: uv.yml
