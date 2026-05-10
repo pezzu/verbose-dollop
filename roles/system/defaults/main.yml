@@ -20,7 +20,6 @@ system_packages:
   - procps
   - ripgrep
   - stow
-  - tmux
   - unar
   - unzip
   - xclip

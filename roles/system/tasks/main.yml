@@ -8,6 +8,9 @@
 - name: Install Homebrew
   ansible.builtin.import_tasks: tasks/brew.yml
 
+- name: Install tmux
+  ansible.builtin.import_tasks: tasks/tmux.yml
+
 - name: Install GAH
   ansible.builtin.import_tasks: tasks/gah.yml
 
