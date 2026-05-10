@@ -51,6 +51,12 @@ Installs or upgrades [GAH](https://github.com/get-gah/gah) using the same versio
 Installs [Yazi](https://github.com/sxyazi/yazi) via Homebrew. A blazing fast terminal file
 manager written in Rust, based on async I/O.
 
+### Mosh
+
+Installs [Mosh](https://mosh.org) via Homebrew (`mosh` formula). Mobile Shell
+provides a roaming-friendly remote terminal session that survives intermittent
+connectivity and IP changes.
+
 ### Keyboard
 
 Swaps CapsLock and Escape keys by updating `/etc/default/keyboard`

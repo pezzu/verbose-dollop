@@ -25,6 +25,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 - [x] [tmux](https://github.com/tmux/tmux/wiki) — installed via Homebrew
 - [x] [GAH](https://github.com/get-gah/gah)
 - [x] [Yazi](https://github.com/sxyazi/yazi) — terminal file manager
+- [x] [Mosh](https://mosh.org) — mobile shell for resilient remote terminal sessions
 - [x] Keyboard: CapsLock ↔ Escape swap
 
 ### DevTools
