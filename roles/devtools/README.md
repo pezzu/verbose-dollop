@@ -1,6 +1,7 @@
 # devtools
 
-Install container runtimes: Docker CE and Podman. Includes language toolchains: Rustup, Go, and nvm.
+Install container runtimes: Docker CE and Podman. Includes language
+toolchains: Rustup, Go, and nvm, plus terminal AI coding agents.
 
 ## Components
 
@@ -53,6 +54,14 @@ Installs [gh](https://cli.github.com) via Homebrew.
 
 Installs [OpenCode](https://opencode.ai) via Homebrew (`brew install opencode`).
 OpenCode is an AI coding agent built for the terminal.
+
+### Pi Coding Agent
+
+Installs [Pi Coding Agent](https://pi.dev) via the official installer script
+(`curl -fsSL https://pi.dev/install.sh | sh`).
+
+The role ensures Homebrew `node` is installed first so the installer can run
+non-interactively.
 
 ### uv
 

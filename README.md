@@ -40,6 +40,7 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
 - [x] [Podman](https://podman.io) (optional Docker-compatible bindings)
 - [x] [gh cli](https://cli.github.com) — GitHub CLI
 - [x] [OpenCode](https://opencode.ai) — AI coding agent for the terminal
+- [x] [Pi Coding Agent](https://pi.dev) — AI coding agent for the terminal
 
 ### DevOps
 
