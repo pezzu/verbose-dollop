@@ -60,16 +60,6 @@
         that: rg_version.rc == 0
         fail_msg: "ripgrep is not installed"
 
-    - name: Check that tmux is installed
-      ansible.builtin.command: tmux -V
-      register: tmux_version
-      changed_when: false
-
-    - name: Assert tmux is installed
-      ansible.builtin.assert:
-        that: tmux_version.rc == 0
-        fail_msg: "tmux is not installed"
-
     - name: Check that stow is installed
       ansible.builtin.command: stow --version
       register: stow_version
@@ -129,6 +119,22 @@
       ansible.builtin.assert:
         that: brew_version.rc == 0
         fail_msg: "brew is not installed"
+
+    # -------------------------------------------------------------------------
+    # system role — tmux
+    # -------------------------------------------------------------------------
+
+    - name: Check that tmux is installed
+      ansible.builtin.command: tmux -V
+      environment:
+        PATH: "{{ target_path }}"
+      register: tmux_version
+      changed_when: false
+
+    - name: Assert tmux is installed
+      ansible.builtin.assert:
+        that: tmux_version.rc == 0
+        fail_msg: "tmux is not installed"
 
     # -------------------------------------------------------------------------
     # system role — gah

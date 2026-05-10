@@ -10,7 +10,7 @@ Installs a curated set of packages via apt. Fully configurable via `system_packa
 
 Default packages include: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`,
 `ffmpegthumbnailer`, `file`, `fzf`, `git`, `graphviz`, `imagemagick`, `jq`, `libpoppler-dev`,
-`lsd`, `lrzsz`, `procps`, `ripgrep`, `stow`, `tmux`, `unar`, `xclip`, `wrk`, `zoxide`, `zssh`.
+`lsd`, `lrzsz`, `procps`, `ripgrep`, `stow`, `unar`, `xclip`, `wrk`, `zoxide`, `zssh`.
 
 Also creates compatibility symlinks for `fd` and `bat` in `~/.local/bin/`.
 
@@ -37,6 +37,10 @@ Fonts and version are configurable via `system_nerd_fonts`.
 
 Installs or upgrades [Homebrew](https://brew.sh) by checking the current version against the
 latest GitHub release and running the official install script when needed.
+
+### tmux
+
+Installs [tmux](https://github.com/tmux/tmux/wiki) via Homebrew (`tmux` formula).
 
 ### GAH
 
