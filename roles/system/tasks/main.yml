@@ -22,3 +22,6 @@
 
 - name: Install Yazi
   ansible.builtin.import_tasks: tasks/yazi.yml
+
+- name: Install Mosh
+  ansible.builtin.import_tasks: tasks/mosh.yml
