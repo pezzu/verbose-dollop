@@ -1,0 +1,76 @@
+---
+# .github/workflows/agent-issue.yml
+name: AI Issue Agent
+
+# yamllint disable-line rule:truthy
+on:
+  issues:
+    types:
+      - labeled
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  fix-issue:
+    if: github.event.label.name == 'agent-ready'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+
+      - name: Install Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Run Copilot CLI
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          git checkout -b "agent/fix-issue-${ISSUE_NUMBER}"
+
+          copilot --yolo --model gpt-5.3-codex --mode autopilot -p "
+            Prepare local changes for GitHub issue #${ISSUE_NUMBER}: ${ISSUE_TITLE}
+            Issue description:
+            ${ISSUE_BODY}
+
+            Do not commit the changes.
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "agent[bot]"
+          git config user.email "agent@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "fix: resolve issue #${{ github.event.issue.number }}"
+          git push origin "agent/fix-issue-${{ github.event.issue.number }}"
+
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          gh pr create \
+            --title "Fix: ${ISSUE_TITLE}" \
+            --body "Closes #${ISSUE_NUMBER}" \
+            --base main \
+            --head "agent/fix-issue-${ISSUE_NUMBER}"
+
+      - name: Update issue label
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "agent-ready" \
+            --add-label "agent-pr-opened"
