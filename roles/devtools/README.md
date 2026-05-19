@@ -52,8 +52,10 @@ Installs [gh](https://cli.github.com) via Homebrew.
 
 ### OpenCode
 
-Installs [OpenCode](https://opencode.ai) via Homebrew (`brew install opencode`).
-OpenCode is an AI coding agent built for the terminal.
+Installs [OpenCode](https://opencode.ai) via the official install script
+(`curl -fsSL https://opencode.ai/install | bash`). Checks the current installed
+version against the latest GitHub release and only runs the script when an
+update is available. OpenCode is an AI coding agent built for the terminal.
 
 ### Pi Coding Agent
 

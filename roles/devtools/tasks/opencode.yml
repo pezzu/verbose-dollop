@@ -1,7 +1,42 @@
 ---
 - name: Install OpenCode
-  community.general.homebrew:
-    name: opencode
-    state: present
-    path: >-
-      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
+  block:
+    - name: Check current opencode version
+      ansible.builtin.command: opencode --version
+      register: devtools_opencode_version
+      changed_when: false
+      failed_when: false
+
+    - name: Get latest opencode release
+      ansible.builtin.uri:
+        method: GET
+        url: https://api.github.com/repos/anomalyco/opencode/releases/latest
+      register: devtools_opencode_release
+
+    - name: Register opencode versions
+      ansible.builtin.set_fact:
+        devtools_current_opencode: >-
+          {{ (devtools_opencode_version.rc | int == 0) | ternary(
+            devtools_opencode_version.stdout_lines[0] | split | last
+              | regex_replace('^v', ''),
+            '') }}
+        devtools_latest_opencode: >-
+          {{ devtools_opencode_release.json.tag_name | regex_replace('^v', '') }}
+
+    - name: Install latest opencode
+      when: devtools_latest_opencode != devtools_current_opencode
+      block:
+        - name: Download opencode install script
+          ansible.builtin.get_url:
+            url: https://opencode.ai/install
+            dest: /tmp/opencode_install.sh
+            mode: "u=rwx,g=rx,o=rx"
+
+        - name: Run opencode install script
+          ansible.builtin.command: /tmp/opencode_install.sh
+          changed_when: true
+
+        - name: Clean up opencode install script
+          ansible.builtin.file:
+            path: /tmp/opencode_install.sh
+            state: absent
