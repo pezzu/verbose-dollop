@@ -8,7 +8,8 @@ galaxy_info:
     nvm, the Node.js version manager, gh, the GitHub CLI with the
     gh-act extension for running GitHub Actions locally, opencode and pi,
     AI coding agents for the terminal, and uv,
-    an extremely fast Python package and project manager.
+    an extremely fast Python package and project manager, and fabric,
+    an open-source framework for augmenting humans using AI.
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
@@ -29,5 +30,7 @@ galaxy_info:
     - ai
     - uv
     - python
+    - fabric
+    - llm
 
 dependencies: []
