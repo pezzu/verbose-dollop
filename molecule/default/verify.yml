@@ -317,6 +317,22 @@
         fail_msg: "opencode is not installed"
 
     # -------------------------------------------------------------------------
+    # devtools role — fabric-ai
+    # -------------------------------------------------------------------------
+
+    - name: Check that fabric-ai is installed
+      ansible.builtin.command: fabric-ai --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: fabric_ai_version
+      changed_when: false
+
+    - name: Assert fabric-ai is installed
+      ansible.builtin.assert:
+        that: fabric_ai_version.rc == 0
+        fail_msg: "fabric-ai is not installed"
+
+    # -------------------------------------------------------------------------
     # devtools role — pi
     # -------------------------------------------------------------------------
 

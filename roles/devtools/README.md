@@ -55,6 +55,13 @@ Installs [gh](https://cli.github.com) via Homebrew.
 Installs [OpenCode](https://opencode.ai) via Homebrew (`brew install opencode`).
 OpenCode is an AI coding agent built for the terminal.
 
+### Fabric AI
+
+Installs [Fabric](https://github.com/danielmiessler/fabric) via Homebrew (`brew install fabric-ai`).
+Fabric is an open-source framework for augmenting humans using AI. It provides a modular,
+prompt-based system for piping text through AI patterns from the command line. The Homebrew
+package installs the binary as `fabric-ai`.
+
 ### Pi Coding Agent
 
 Installs [Pi Coding Agent](https://pi.dev) via the official installer script
