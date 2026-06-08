@@ -9,7 +9,7 @@ Baseline system setup: apt packages, shell, editor, fonts, and keyboard configur
 Installs a curated set of packages via apt. Fully configurable via `system_packages`.
 
 Default packages include: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`,
-`ffmpegthumbnailer`, `file`, `fzf`, `git`, `graphviz`, `imagemagick`, `jq`, `libpoppler-dev`,
+`ffmpegthumbnailer`, `file`, `git`, `graphviz`, `imagemagick`, `jq`, `libpoppler-dev`,
 `lsd`, `lrzsz`, `procps`, `ripgrep`, `stow`, `unar`, `xclip`, `wrk`, `zoxide`, `zssh`.
 
 Also creates compatibility symlinks for `fd` and `bat` in `~/.local/bin/`.
@@ -48,6 +48,11 @@ Installs or upgrades [GAH](https://github.com/get-gah/gah) using the same versio
 
 Installs [Yazi](https://github.com/sxyazi/yazi) via Homebrew. A blazing fast terminal file
 manager written in Rust, based on async I/O.
+
+### fzf
+
+Installs [fzf](https://github.com/junegunn/fzf) via Homebrew (`fzf` formula). A command-line
+fuzzy finder for interactive filtering of any list.
 
 ### Keyboard
 

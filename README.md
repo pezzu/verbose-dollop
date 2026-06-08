@@ -16,7 +16,7 @@ Ansible playbook to provision a development environment on a Debian-based system
 
 Baseline system configuration and developer tooling. See [`roles/system`](roles/system/README.md).
 
-- [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `fzf`, `git`,
+- [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `git`,
   `graphviz`, `imagemagick`, `jq`, `lsd`, `ripgrep`, `stow`, `xclip`, `zoxide`, and more
 - [x] zsh + [Oh My Zsh](https://ohmyz.sh)
 - [x] [Neovim](https://neovim.io) — installed via Homebrew
@@ -25,6 +25,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 - [x] [tmux](https://github.com/tmux/tmux/wiki) — installed via Homebrew
 - [x] [GAH](https://github.com/get-gah/gah)
 - [x] [Yazi](https://github.com/sxyazi/yazi) — terminal file manager
+- [x] [fzf](https://github.com/junegunn/fzf) — command-line fuzzy finder, installed via Homebrew
 - [x] Keyboard: CapsLock ↔ Escape swap
 
 ### DevTools
