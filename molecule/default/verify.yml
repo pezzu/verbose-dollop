@@ -198,16 +198,6 @@
         that: ohmyzsh_dir.stat.isdir
         fail_msg: "Oh My Zsh directory ~/.oh-my-zsh is not present"
 
-    - name: Check that zshrc plugins line is configured
-      ansible.builtin.command: grep "plugins=" ~/.zshrc
-      register: zshrc_plugins
-      changed_when: false
-
-    - name: Assert zshrc plugins are configured
-      ansible.builtin.assert:
-        that: zshrc_plugins.rc == 0
-        fail_msg: "plugins= line not found in ~/.zshrc"
-
     # -------------------------------------------------------------------------
     # devtools role — Docker
     # -------------------------------------------------------------------------

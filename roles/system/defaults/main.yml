@@ -27,10 +27,6 @@ system_packages:
   - zoxide
   - zssh
 
-system_ohmyzsh_plugins:
-  - git
-  - vi-mode
-
 system_nerd_fonts:
   # version: "HEAD"
   version: "v3.3.0"

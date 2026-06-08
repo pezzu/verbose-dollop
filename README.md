@@ -18,7 +18,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 
 - [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `fzf`, `git`,
   `graphviz`, `imagemagick`, `jq`, `lsd`, `ripgrep`, `stow`, `xclip`, `zoxide`, and more
-- [x] zsh + [Oh My Zsh](https://ohmyz.sh) (configurable plugins)
+- [x] zsh + [Oh My Zsh](https://ohmyz.sh)
 - [x] [Neovim](https://neovim.io) — installed via Homebrew
 - [x] [Nerd Fonts](https://www.nerdfonts.com) (configurable selection)
 - [x] [Homebrew](https://brew.sh)
