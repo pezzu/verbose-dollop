@@ -25,3 +25,6 @@
 
 - name: Install Yazi
   ansible.builtin.import_tasks: tasks/yazi.yml
+
+- name: Install fzf
+  ansible.builtin.import_tasks: tasks/fzf.yml

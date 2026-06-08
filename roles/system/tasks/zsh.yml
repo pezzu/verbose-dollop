@@ -25,12 +25,6 @@
         creates: ~/.oh-my-zsh
       when: not system_ohmyzsh_dir.stat.exists
 
-    - name: Setup plugins
-      ansible.builtin.lineinfile:
-        path: ~/.zshrc
-        search_string: plugins=
-        value: plugins=({{ system_ohmyzsh_plugins | join(' ') }})
-
 - name: Set ZSH as default shell
   become: true
   tags: molecule-notest
