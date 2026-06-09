@@ -20,6 +20,9 @@
 - name: Import OpenCode tasks
   ansible.builtin.import_tasks: opencode.yml
 
+- name: Import Fabric AI tasks
+  ansible.builtin.import_tasks: fabric.yml
+
 - name: Import Pi Coding Agent tasks
   ansible.builtin.import_tasks: pi.yml
 
