@@ -29,5 +29,8 @@
 - name: Install Mosh
   ansible.builtin.import_tasks: tasks/mosh.yml
 
+- name: Install direnv
+  ansible.builtin.import_tasks: tasks/direnv.yml
+
 - name: Install fzf
   ansible.builtin.import_tasks: tasks/fzf.yml

@@ -3,7 +3,7 @@ galaxy_info:
   author: Peter Sukhenko
   description: >
     Baseline system setup: apt packages, zsh + Oh My Zsh, Neovim, Nerd Fonts,
-    Homebrew, tmux, GAH, Yazi terminal file manager, Mosh mobile shell, fzf fuzzy finder,
+    Homebrew, tmux, GAH, Yazi terminal file manager, Mosh mobile shell, direnv, fzf fuzzy finder,
     and keyboard configuration (CapsLock ↔ Escape).
   license: MIT
   min_ansible_version: "2.9"
@@ -15,6 +15,7 @@ galaxy_info:
     - fonts
     - yazi
     - mosh
+    - direnv
     - fzf
 
 dependencies: []

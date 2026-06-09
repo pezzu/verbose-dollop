@@ -26,6 +26,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 - [x] [GAH](https://github.com/get-gah/gah)
 - [x] [Yazi](https://github.com/sxyazi/yazi) — terminal file manager
 - [x] [Mosh](https://mosh.org) — mobile shell for resilient remote terminal sessions
+- [x] [direnv](https://direnv.net) — per-directory environment variable loader
 - [x] [fzf](https://github.com/junegunn/fzf) — command-line fuzzy finder, installed via Homebrew
 - [x] Keyboard: CapsLock ↔ Escape swap
 
