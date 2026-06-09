@@ -175,6 +175,20 @@
         fail_msg: "yazi is not installed"
 
     # -------------------------------------------------------------------------
+    # system role — direnv
+    # -------------------------------------------------------------------------
+
+    - name: Check that direnv is installed
+      ansible.builtin.command: direnv --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: direnv_version
+      changed_when: false
+
+    - name: Assert direnv is installed
+      ansible.builtin.assert:
+        that: direnv_version.rc == 0
+        fail_msg: "direnv is not installed"
     # system role — fzf
     # -------------------------------------------------------------------------
 
