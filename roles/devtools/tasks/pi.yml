@@ -1,42 +1,30 @@
 ---
 - name: Install Pi Coding Agent
-  vars:
-    devtools_pi_install_script_url: https://pi.dev/install.sh
-    devtools_pi_install_script_path: /tmp/pi_install.sh
-    devtools_pi_path: >-
-      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
   block:
-    - name: Ensure Node.js is installed
-      community.general.homebrew:
-        name: node
-        state: present
-        path: "{{ devtools_pi_path }}"
+    - name: Ensure ~/.nvm/default-packages exists
+      ansible.builtin.file:
+        path: "{{ ansible_facts['env']['HOME'] }}/.nvm/default-packages"
+        state: touch
+        mode: "0644"
+        modification_time: preserve
+        access_time: preserve
+
+    - name: Add pi-coding-agent to nvm default-packages
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_facts['env']['HOME'] }}/.nvm/default-packages"
+        line: "@earendil-works/pi-coding-agent"
 
     - name: Check current Pi version
-      ansible.builtin.command: pi --version
-      environment:
-        PATH: "{{ devtools_pi_path }}"
+      ansible.builtin.shell: source ~/.nvm/nvm.sh && pi --version
+      args:
+        executable: /bin/bash
       register: devtools_pi_version
       changed_when: false
       failed_when: false
 
     - name: Install Pi when missing
+      ansible.builtin.shell: source ~/.nvm/nvm.sh && npm install -g @earendil-works/pi-coding-agent
+      args:
+        executable: /bin/bash
       when: devtools_pi_version.rc != 0
-      block:
-        - name: Download Pi install script
-          ansible.builtin.get_url:
-            url: "{{ devtools_pi_install_script_url }}"
-            dest: "{{ devtools_pi_install_script_path }}"
-            mode: "u=rwx,g=rx,o=rx"
-
-        - name: Run Pi install script
-          ansible.builtin.command: "{{ devtools_pi_install_script_path }}"
-          environment:
-            CI: "true"
-            PATH: "{{ devtools_pi_path }}"
-          changed_when: true
-      always:
-        - name: Clean up Pi install script
-          ansible.builtin.file:
-            path: "{{ devtools_pi_install_script_path }}"
-            state: absent
+      changed_when: true

@@ -44,3 +44,9 @@
           ansible.builtin.file:
             path: "{{ devtools_nvm_install_script_path }}"
             state: absent
+
+- name: Install Node.js LTS via nvm
+  ansible.builtin.shell: source ~/.nvm/nvm.sh && nvm install --lts
+  args:
+    executable: /bin/bash
+  changed_when: false

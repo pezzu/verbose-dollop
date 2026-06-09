@@ -365,9 +365,9 @@
     # -------------------------------------------------------------------------
 
     - name: Check that pi is installed
-      ansible.builtin.command: pi --version
-      environment:
-        PATH: "{{ target_path }}"
+      ansible.builtin.shell: source ~/.nvm/nvm.sh && pi --version
+      args:
+        executable: /bin/bash
       register: pi_version
       changed_when: false
 
