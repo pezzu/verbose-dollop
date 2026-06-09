@@ -16,9 +16,9 @@ Ansible playbook to provision a development environment on a Debian-based system
 
 Baseline system configuration and developer tooling. See [`roles/system`](roles/system/README.md).
 
-- [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `fzf`, `git`,
+- [x] apt packages: `bat`, `build-essential`, `cloc`, `curl`, `entr`, `fd-find`, `ffmpeg`, `git`,
   `graphviz`, `imagemagick`, `jq`, `lsd`, `ripgrep`, `stow`, `xclip`, `zoxide`, and more
-- [x] zsh + [Oh My Zsh](https://ohmyz.sh) (configurable plugins)
+- [x] zsh + [Oh My Zsh](https://ohmyz.sh)
 - [x] [Neovim](https://neovim.io) — installed via Homebrew
 - [x] [Nerd Fonts](https://www.nerdfonts.com) (configurable selection)
 - [x] [Homebrew](https://brew.sh)
@@ -26,6 +26,7 @@ Baseline system configuration and developer tooling. See [`roles/system`](roles/
 - [x] [GAH](https://github.com/get-gah/gah)
 - [x] [Yazi](https://github.com/sxyazi/yazi) — terminal file manager
 - [x] [Mosh](https://mosh.org) — mobile shell for resilient remote terminal sessions
+- [x] [fzf](https://github.com/junegunn/fzf) — command-line fuzzy finder, installed via Homebrew
 - [x] Keyboard: CapsLock ↔ Escape swap
 
 ### DevTools
@@ -43,6 +44,7 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
 - [x] [gh cli](https://cli.github.com) — GitHub CLI
 - [x] [OpenCode](https://opencode.ai) — AI coding agent for the terminal
 - [x] [Pi Coding Agent](https://pi.dev) — AI coding agent for the terminal
+- [x] [Fabric](https://github.com/danielmiessler/fabric) — AI augmentation framework for the terminal
 
 ### DevOps
 

@@ -9,7 +9,6 @@ system_packages:
   - ffmpeg
   - ffmpegthumbnailer
   - file
-  - fzf
   - git
   - graphviz
   - imagemagick
@@ -26,10 +25,6 @@ system_packages:
   - wrk
   - zoxide
   - zssh
-
-system_ohmyzsh_plugins:
-  - git
-  - vi-mode
 
 system_nerd_fonts:
   # version: "HEAD"

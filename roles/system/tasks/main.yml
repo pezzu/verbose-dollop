@@ -28,3 +28,6 @@
 
 - name: Install Mosh
   ansible.builtin.import_tasks: tasks/mosh.yml
+
+- name: Install fzf
+  ansible.builtin.import_tasks: tasks/fzf.yml

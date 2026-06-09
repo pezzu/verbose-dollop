@@ -40,16 +40,6 @@
         that: jq_version.rc == 0
         fail_msg: "jq is not installed"
 
-    - name: Check that fzf is installed
-      ansible.builtin.command: fzf --version
-      register: fzf_version
-      changed_when: false
-
-    - name: Assert fzf is installed
-      ansible.builtin.assert:
-        that: fzf_version.rc == 0
-        fail_msg: "fzf is not installed"
-
     - name: Check that ripgrep is installed
       ansible.builtin.command: rg --version
       register: rg_version
@@ -199,6 +189,22 @@
       ansible.builtin.assert:
         that: mosh_version.rc == 0
         fail_msg: "mosh is not installed"
+    
+    # -------------------------------------------------------------------------
+    # system role — fzf
+    # -------------------------------------------------------------------------
+
+    - name: Check that fzf is installed
+      ansible.builtin.command: fzf --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: fzf_version
+      changed_when: false
+
+    - name: Assert fzf is installed
+      ansible.builtin.assert:
+        that: fzf_version.rc == 0
+        fail_msg: "fzf is not installed"
 
     # -------------------------------------------------------------------------
     # system role — Oh My Zsh
@@ -213,16 +219,6 @@
       ansible.builtin.assert:
         that: ohmyzsh_dir.stat.isdir
         fail_msg: "Oh My Zsh directory ~/.oh-my-zsh is not present"
-
-    - name: Check that zshrc plugins line is configured
-      ansible.builtin.command: grep "plugins=" ~/.zshrc
-      register: zshrc_plugins
-      changed_when: false
-
-    - name: Assert zshrc plugins are configured
-      ansible.builtin.assert:
-        that: zshrc_plugins.rc == 0
-        fail_msg: "plugins= line not found in ~/.zshrc"
 
     # -------------------------------------------------------------------------
     # devtools role — Docker
@@ -331,6 +327,22 @@
       ansible.builtin.assert:
         that: opencode_version.rc == 0
         fail_msg: "opencode is not installed"
+
+    # -------------------------------------------------------------------------
+    # devtools role — fabric-ai
+    # -------------------------------------------------------------------------
+
+    - name: Check that fabric-ai is installed
+      ansible.builtin.command: fabric-ai --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: fabric_ai_version
+      changed_when: false
+
+    - name: Assert fabric-ai is installed
+      ansible.builtin.assert:
+        that: fabric_ai_version.rc == 0
+        fail_msg: "fabric-ai is not installed"
 
     # -------------------------------------------------------------------------
     # devtools role — pi
