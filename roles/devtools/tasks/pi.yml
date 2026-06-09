@@ -5,6 +5,7 @@
       ansible.builtin.file:
         path: "{{ ansible_facts['env']['HOME'] }}/.nvm/default-packages"
         state: touch
+        mode: "0644"
         modification_time: preserve
         access_time: preserve
 
