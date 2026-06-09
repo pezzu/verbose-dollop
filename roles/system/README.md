@@ -49,10 +49,17 @@ Installs or upgrades [GAH](https://github.com/get-gah/gah) using the same versio
 Installs [Yazi](https://github.com/sxyazi/yazi) via Homebrew. A blazing fast terminal file
 manager written in Rust, based on async I/O.
 
+### Mosh
+
+Installs [Mosh](https://mosh.org) via Homebrew (`mosh` formula). Mobile Shell
+provides a roaming-friendly remote terminal session that survives intermittent
+connectivity and IP changes.
+
 ### direnv
 
 Installs [direnv](https://direnv.net) via Homebrew. Automatically loads and unloads environment
 variables depending on the current directory, enabling per-project environment configuration.
+
 ### fzf
 
 Installs [fzf](https://github.com/junegunn/fzf) via Homebrew (`fzf` formula). A command-line

@@ -175,6 +175,22 @@
         fail_msg: "yazi is not installed"
 
     # -------------------------------------------------------------------------
+    # system role — mosh
+    # -------------------------------------------------------------------------
+
+    - name: Check that mosh is installed
+      ansible.builtin.command: mosh --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: mosh_version
+      changed_when: false
+
+    - name: Assert mosh is installed
+      ansible.builtin.assert:
+        that: mosh_version.rc == 0
+        fail_msg: "mosh is not installed"
+
+    # -------------------------------------------------------------------------
     # system role — direnv
     # -------------------------------------------------------------------------
 
@@ -189,6 +205,8 @@
       ansible.builtin.assert:
         that: direnv_version.rc == 0
         fail_msg: "direnv is not installed"
+
+    # -------------------------------------------------------------------------
     # system role — fzf
     # -------------------------------------------------------------------------
 
