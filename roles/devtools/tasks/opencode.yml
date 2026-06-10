@@ -3,7 +3,7 @@
   vars:
     devtools_opencode_install_script_path: /tmp/opencode_install.sh
     devtools_opencode_path: >-
-      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
+      {{ ansible_facts['env']['HOME'] }}/.opencode/bin:/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
   block:
     - name: Check current opencode version
       ansible.builtin.command: opencode --version
@@ -28,6 +28,10 @@
         devtools_latest_opencode: >-
           {{ devtools_opencode_release.json.tag_name | regex_replace('^v', '') }}
 
+    - name: Debug opencode versions
+      ansible.builtin.debug:
+        msg: "current={{ devtools_current_opencode }} latest={{ devtools_latest_opencode }}"
+
     - name: Install latest opencode
       when: devtools_latest_opencode != devtools_current_opencode
       block:
@@ -39,6 +43,9 @@
 
         - name: Run opencode install script
           ansible.builtin.command: "{{ devtools_opencode_install_script_path }}"
+          environment:
+            HOME: "{{ ansible_facts['env']['HOME'] }}"
+            PATH: "{{ devtools_opencode_path }}"
           changed_when: true
       always:
         - name: Clean up opencode install script
