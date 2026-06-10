@@ -1,8 +1,14 @@
 ---
 - name: Install OpenCode
+  vars:
+    devtools_opencode_install_script_path: /tmp/opencode_install.sh
+    devtools_opencode_path: >-
+      /home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}
   block:
     - name: Check current opencode version
       ansible.builtin.command: opencode --version
+      environment:
+        PATH: "{{ devtools_opencode_path }}"
       register: devtools_opencode_version
       changed_when: false
       failed_when: false
@@ -17,8 +23,7 @@
       ansible.builtin.set_fact:
         devtools_current_opencode: >-
           {{ (devtools_opencode_version.rc | int == 0) | ternary(
-            devtools_opencode_version.stdout_lines[0] | split | last
-              | regex_replace('^v', ''),
+            devtools_opencode_version.stdout | trim | regex_replace('^v', ''),
             '') }}
         devtools_latest_opencode: >-
           {{ devtools_opencode_release.json.tag_name | regex_replace('^v', '') }}
@@ -29,14 +34,14 @@
         - name: Download opencode install script
           ansible.builtin.get_url:
             url: https://opencode.ai/install
-            dest: /tmp/opencode_install.sh
+            dest: "{{ devtools_opencode_install_script_path }}"
             mode: "u=rwx,g=rx,o=rx"
 
         - name: Run opencode install script
-          ansible.builtin.command: /tmp/opencode_install.sh
+          ansible.builtin.command: "{{ devtools_opencode_install_script_path }}"
           changed_when: true
-
+      always:
         - name: Clean up opencode install script
           ansible.builtin.file:
-            path: /tmp/opencode_install.sh
+            path: "{{ devtools_opencode_install_script_path }}"
             state: absent
