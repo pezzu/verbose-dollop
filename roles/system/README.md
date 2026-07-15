@@ -1,6 +1,6 @@
 # system
 
-Baseline system setup: apt packages, shell, editor, fonts, and keyboard configuration.
+Baseline system setup: apt packages, shell, editor, and fonts.
 
 ## Components
 
@@ -69,11 +69,6 @@ fuzzy finder for interactive filtering of any list.
 
 Installs [herdr](https://github.com/ogulcancelik/herdr) via Homebrew (`herdr` formula). An
 agent multiplexer that lives in your terminal.
-
-### Keyboard
-
-Swaps CapsLock and Escape keys by updating `/etc/default/keyboard`
-(`XKBOPTIONS="caps:swapescape"`).
 
 ## Role Variables
 

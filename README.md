@@ -59,12 +59,8 @@ Infrastructure, cloud, and Kubernetes tooling. See [`roles/devops`](roles/devops
   - [x] [kubectx](https://github.com/ahmetb/kubectx) — switch between Kubernetes contexts and namespaces
   - [x] [k9s](https://k9scli.io) — terminal UI for Kubernetes clusters
   - [x] [lfk](https://github.com/janosmiko/lfk) — Lightning Fast Kubernetes navigator
-- [x] HashiCorp
+- [x] Terraform
   - [x] [tfenv](https://github.com/tfutils/tfenv) (Terraform version manager)
-  - [x] [consul](https://www.consul.io)
-  - [x] [nomad](https://www.nomadproject.io)
-  - [x] [packer](https://www.packer.io)
-  - [x] [vagrant](https://www.vagrantup.com)
 - [x] Cloud CLIs
   - [x] [AWS CLI](https://aws.amazon.com/cli/)
   - [x] [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)

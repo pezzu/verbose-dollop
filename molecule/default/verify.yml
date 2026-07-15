@@ -507,7 +507,7 @@
         fail_msg: "lfk is not installed"
 
     # -------------------------------------------------------------------------
-    # devops role — HashiCorp tooling
+    # devops role — Terraform tooling (tfenv)
     # -------------------------------------------------------------------------
 
     - name: Check that tfenv is installed
@@ -521,56 +521,6 @@
       ansible.builtin.assert:
         that: tfenv_version.rc == 0
         fail_msg: "tfenv is not installed"
-
-    - name: Check that consul is installed
-      ansible.builtin.command: consul --version
-      environment:
-        PATH: "{{ target_path }}"
-      register: consul_version
-      changed_when: false
-
-    - name: Assert consul is installed
-      ansible.builtin.assert:
-        that: consul_version.rc == 0
-        fail_msg: "consul is not installed"
-
-    - name: Check that nomad is installed
-      ansible.builtin.command: nomad --version
-      environment:
-        PATH: "{{ target_path }}"
-      register: nomad_version
-      changed_when: false
-
-    - name: Assert nomad is installed
-      ansible.builtin.assert:
-        that: nomad_version.rc == 0
-        fail_msg: "nomad is not installed"
-
-    - name: Check that packer is installed
-      ansible.builtin.command: packer --version
-      environment:
-        PATH: "{{ target_path }}"
-      register: packer_version
-      changed_when: false
-
-    - name: Assert packer is installed
-      ansible.builtin.assert:
-        that: packer_version.rc == 0
-        fail_msg: "packer is not installed"
-
-    - name: Check that vagrant is installed
-      ansible.builtin.command: vagrant --version
-      environment:
-        PATH: "{{ target_path }}"
-      register: vagrant_version
-      changed_when: false
-      when: ansible_virtualization_type != "docker"
-
-    - name: Assert vagrant is installed
-      ansible.builtin.assert:
-        that: vagrant_version.rc == 0
-        fail_msg: "vagrant is not installed"
-      when: ansible_virtualization_type != "docker"
 
     # -------------------------------------------------------------------------
     # devops role — cloud CLIs
