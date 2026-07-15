@@ -65,6 +65,11 @@ variables depending on the current directory, enabling per-project environment c
 Installs [fzf](https://github.com/junegunn/fzf) via Homebrew (`fzf` formula). A command-line
 fuzzy finder for interactive filtering of any list.
 
+### herdr
+
+Installs [herdr](https://github.com/ogulcancelik/herdr) via Homebrew (`herdr` formula). An
+agent multiplexer that lives in your terminal.
+
 ## Role Variables
 
 | Variable | Default | Description |
