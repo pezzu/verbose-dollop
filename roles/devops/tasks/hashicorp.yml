@@ -1,17 +1,7 @@
 ---
-- name: Tap HashiCorp repository
-  community.general.homebrew_tap:
-    name: hashicorp/tap
-    state: present
-    path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"
-
 - name: Install Hashicorp tools
   community.general.homebrew:
     name:
-      - hashicorp/tap/consul
-      - hashicorp/tap/nomad
-      - hashicorp/tap/packer
-      - hashicorp/tap/vagrant
       - tfenv
     state: present
     path: "/home/linuxbrew/.linuxbrew/bin:/opt/homebrew/bin:/usr/local/bin:{{ ansible_facts['env']['PATH'] }}"

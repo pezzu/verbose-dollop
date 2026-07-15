@@ -1,6 +1,6 @@
 # system
 
-Baseline system setup: apt packages, shell, editor, fonts, and keyboard configuration.
+Baseline system setup: apt packages, shell, editor, and fonts.
 
 ## Components
 
@@ -64,11 +64,6 @@ variables depending on the current directory, enabling per-project environment c
 
 Installs [fzf](https://github.com/junegunn/fzf) via Homebrew (`fzf` formula). A command-line
 fuzzy finder for interactive filtering of any list.
-
-### Keyboard
-
-Swaps CapsLock and Escape keys by updating `/etc/default/keyboard`
-(`XKBOPTIONS="caps:swapescape"`).
 
 ## Role Variables
 
