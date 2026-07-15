@@ -223,6 +223,22 @@
         fail_msg: "fzf is not installed"
 
     # -------------------------------------------------------------------------
+    # system role — herdr
+    # -------------------------------------------------------------------------
+
+    - name: Check that herdr is installed
+      ansible.builtin.command: herdr --version
+      environment:
+        PATH: "{{ target_path }}"
+      register: herdr_version
+      changed_when: false
+
+    - name: Assert herdr is installed
+      ansible.builtin.assert:
+        that: herdr_version.rc == 0
+        fail_msg: "herdr is not installed"
+
+    # -------------------------------------------------------------------------
     # system role — Oh My Zsh
     # -------------------------------------------------------------------------
 

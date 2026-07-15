@@ -34,3 +34,6 @@
 
 - name: Install fzf
   ansible.builtin.import_tasks: tasks/fzf.yml
+
+- name: Install herdr
+  ansible.builtin.import_tasks: tasks/herdr.yml
