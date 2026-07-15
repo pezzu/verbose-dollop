@@ -1,6 +1,6 @@
 # devops
 
-Install DevOps tool belt: Kubernetes, HashiCorp stack, cloud CLIs, and auxiliary tools.
+Install DevOps tool belt: Kubernetes, tfenv, cloud CLIs, and auxiliary tools.
 All packages are installed via [Homebrew](https://brew.sh).
 
 ## Components
@@ -16,15 +16,11 @@ All packages are installed via [Homebrew](https://brew.sh).
 | [k9s](https://k9scli.io) | Terminal UI for Kubernetes clusters |
 | [lfk](https://github.com/janosmiko/lfk) | Lightning Fast Kubernetes navigator |
 
-### HashiCorp
+### Terraform
 
 | Tool | Description |
 |---|---|
 | [tfenv](https://github.com/tfutils/tfenv) | Terraform version manager |
-| [consul](https://www.consul.io) | Service mesh and service discovery |
-| [nomad](https://www.nomadproject.io) | Workload orchestrator |
-| [packer](https://www.packer.io) | Machine image builder |
-| [vagrant](https://www.vagrantup.com) | Development environment manager |
 
 ### Cloud CLIs
 
