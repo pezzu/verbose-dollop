@@ -76,6 +76,13 @@ Installs [uv](https://docs.astral.sh/uv/) via Homebrew (`brew install uv`).
 uv is an extremely fast Python package and project manager, written in Rust.
 It provides both the `uv` and `uvx` binaries.
 
+### droast
+
+Installs [droast](https://github.com/immanuwell/dockerfile-roast) via
+Homebrew, tapping `immanuwell/droast` first. droast is an opinionated
+Dockerfile linter written in Rust that catches common bad practices in
+Dockerfiles.
+
 ## Role Variables
 
 | Variable | Default | Description |

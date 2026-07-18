@@ -7,9 +7,10 @@ galaxy_info:
     the Rust toolchain installer, Go, the Go programming language toolchain,
     nvm, the Node.js version manager, gh, the GitHub CLI with the
     gh-act extension for running GitHub Actions locally, opencode and pi,
-    AI coding agents for the terminal, and uv,
-    an extremely fast Python package and project manager, and fabric,
-    an open-source framework for augmenting humans using AI.
+    AI coding agents for the terminal, uv,
+    an extremely fast Python package and project manager, fabric,
+    an open-source framework for augmenting humans using AI, and droast,
+    an opinionated Dockerfile linter.
   license: MIT
   min_ansible_version: "2.9"
   galaxy_tags:
@@ -32,5 +33,8 @@ galaxy_info:
     - python
     - fabric
     - llm
+    - droast
+    - dockerfile
+    - linter
 
 dependencies: []

@@ -28,3 +28,6 @@
 
 - name: Import uv tasks
   ansible.builtin.import_tasks: uv.yml
+
+- name: Import droast tasks
+  ansible.builtin.import_tasks: droast.yml
