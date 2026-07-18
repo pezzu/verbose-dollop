@@ -47,6 +47,7 @@ Container runtimes and build tooling. See [`roles/devtools`](roles/devtools/READ
 - [x] [OpenCode](https://opencode.ai) — AI coding agent for the terminal
 - [x] [Pi Coding Agent](https://pi.dev) — AI coding agent for the terminal
 - [x] [Fabric](https://github.com/danielmiessler/fabric) — AI augmentation framework for the terminal
+- [x] [droast](https://github.com/immanuwell/dockerfile-roast) — opinionated Dockerfile linter
 
 ### DevOps
 

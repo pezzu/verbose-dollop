@@ -417,6 +417,20 @@
         fail_msg: "uvx is not installed"
 
     # -------------------------------------------------------------------------
+    # devtools role — droast
+    # -------------------------------------------------------------------------
+
+    - name: Check that droast is installed
+      ansible.builtin.command: /home/linuxbrew/.linuxbrew/bin/droast --version
+      register: droast_version
+      changed_when: false
+
+    - name: Assert droast is installed
+      ansible.builtin.assert:
+        that: droast_version.rc == 0
+        fail_msg: "droast is not installed"
+
+    # -------------------------------------------------------------------------
     # devops role — Kubernetes tooling
     # -------------------------------------------------------------------------
 
